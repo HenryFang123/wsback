@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="fzz.wsback.dao.BusinessDao">
+
+    <resultMap type="fzz.wsback.domain.BusinessInfo"
+               id="BusinessResultMap">
+        <id column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="business_image_path" property="businessImagePath" jdbcType="VARCHAR"/>
+        <result column="business_name" property="businessName" jdbcType="VARCHAR"/>
+        <result column="business_description" property="businessDescription" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- 根据店铺ID获取信息表信息 -->
+    <select id="getBusinessInfoById" resultMap="BusinessResultMap" parameterType="fzz.wsback.domain.BusinessInfo">
+        select *
+        from business_info
+        where business_id = #{businessId}
+    </select>
+
+</mapper>

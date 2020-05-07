@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="fzz.wsback.dao.BookDao">
+
+    <resultMap type="fzz.wsback.domain.BookInfo"
+               id="BookResultMap">
+        <id column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="book_image_path" property="bookImagePath" jdbcType="VARCHAR"/>
+        <result column="book_name" property="bookName" jdbcType="VARCHAR"/>
+        <result column="book_author" property="bookAuthor" jdbcType="VARCHAR"/>
+        <result column="book_pub" property="bookPub" jdbcType="VARCHAR"/>
+        <result column="book_year" property="bookYear" jdbcType="VARCHAR"/>
+        <result column="book_isbn" property="bookIsbn" jdbcType="VARCHAR"/>
+        <result column="book_price" property="bookPrice" jdbcType="DOUBLE"/>
+        <result column="book_stock" property="bookStock" jdbcType="INTEGER"/>
+        <result column="book_description" property="bookDescription" jdbcType="VARCHAR"/>
+        <result column="book_rating" property="bookRating" jdbcType="FLOAT"/>
+        <result column="book_type_id" property="bookTypeId" jdbcType="INTEGER"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="book_status" property="bookStatus" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- 根据书籍ID获取信息表信息 -->
+    <select id="getBookInfoById" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
+        select *
+        from book_info
+        where book_id = #{bookId}
+    </select>
+
+    <select id="getAllBook" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
+        SELECT * FROM book_info  where business_id=#{businessId} limit #{firstIndex},#{pageSize}
+
+    </select>
+
+    <select id="getBookCount"  resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)  FROM book_info  where business_id=#{businessId}
+
+    </select>
+
+
+    <delete id="deleteBook" parameterType="fzz.wsback.domain.BookInfo">
+        delete
+        from book_info
+        where book_id = #{bookId}
+    </delete>
+
+    <select id="getBookByName" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
+        select *
+        from book_info
+        where book_name = #{bookName}
+    </select>
+
+    <delete id="deleteBookByName" parameterType="fzz.wsback.domain.BookInfo">
+        delete
+        from book_info
+        where book_name = #{bookName} and business_id = #{businessId}
+    </delete>
+
+    <update id="updateBookInfo" parameterType="fzz.wsback.domain.BookInfo">
+        update book_info
+        set book_image_path = #{bookImagePath} ,book_price = #{bookPrice} ,book_description = #{bookDescription}
+        where business_id = #{businessId} and book_name = #{bookName};
+    </update>
+
+    <insert id="insertBook">
+        insert into book_info (business_id,book_id, book_name, book_image_path, book_author,book_pub,book_year,book_isbn,book_price,book_description)
+        values (#{businessId}, #{bookId},#{bookName}, #{bookImagePath}, #{bookAuthor},#{bookPub},#{bookYear},#{bookIsbn},#{bookPrice},#{bookDescription})
+    </insert>
+</mapper>

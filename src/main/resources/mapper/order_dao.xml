@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="fzz.wsback.dao.OrderDao">
+
+    <resultMap type="fzz.wsback.domain.OrderInfo"
+               id="OrderResultMap">
+        <id column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="book_name" property="bookName" jdbcType="VARCHAR"/>
+        <result column="book_image_path" property="bookImagePath" jdbcType="VARCHAR"/>
+        <result column="book_number" property="bookNumber" jdbcType="INTEGER"/>
+        <result column="total_price" property="totalPrice" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <select id="getOrderInfo" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
+        select * from order_info where business_id=#{businessId} limit #{firstIndex},#{pageSize}
+    </select>
+
+    <select id="getOrderCount"  resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)  FROM order_info  where business_id=#{businessId}
+
+    </select>
+
+    <select id="getOrdersByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+        select *
+        from order_info
+        where user_id =#{userId}
+    </select>
+
+    <select id="deleteOrder" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
+        delete
+        from order_info
+        where order_id = #{orderId}
+    </select>
+
+    <select id="updateOrder" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
+        update order_info
+        set user_address = #{userAddress} ,user_phone = #{userPhone}
+        where order_id = #{orderId}
+    </select>
+
+    <select id="getOneOrder" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
+        select *
+        from order_info
+        where order_id = #{orderId}
+    </select>
+
+    <insert id="addOrder">
+        insert into order_info (order_id, user_address, user_id, user_phone,business_id,book_id,book_name,book_image_path,book_number,total_price)
+        values (#{orderId}, #{userAddress}, #{userId}, #{userPhone},#{businessId},#{bookId},#{bookName},#{bookImagePath},#{bookNumber},#{totalPrice})
+    </insert>
+</mapper>
