@@ -66,4 +66,16 @@
         values (#{userId}, #{userName}, #{userPhone}, #{userPassWord})
     </insert>
 
+    <select id="getUserInfoByUserPhone" resultMap="UserInfoResultMap" parameterType="java.lang.String">
+        select *
+        from user_info
+        where user_phone = #{userPhone}
+    </select>
+
+    <update id="updateUserInfo" parameterType="fzz.wsback.domain.UserInfo">
+        update user_info
+        set user_name = #{userName} ,user_email = #{userEmail} ,user_sex = #{userSex} ,user_age = #{userAge} ,user_province = #{userProvince} ,user_city = #{userCity} ,user_address = #{userAddress}
+        where user_phone = #{userPhone} 
+    </update>
+
 </mapper>

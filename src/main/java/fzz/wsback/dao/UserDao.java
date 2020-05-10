@@ -1,8 +1,11 @@
 package fzz.wsback.dao;
 
 import fzz.wsback.domain.User;
+import fzz.wsback.domain.UserInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author NE
@@ -63,4 +66,10 @@ public interface UserDao {
      */
     void registerLoginTable(@Param("userId") Integer userId, @Param("userName") String userName, @Param("userPhone") String userPhone, @Param("userPassWord") String userPassWord);
 
+    UserInfo getUserInfoByUserPhone(@Param("userPhone")String userPhone);
+
+    void updateUserInfo(@Param("userPhone") String userPhone,@Param("userName") String userName,
+                        @Param("userEmail") String userEmail,@Param("userSex") String userSex,
+                        @Param("userAge") Integer userAge, @Param("userProvince") String userProvince,
+                        @Param("userCity") String userCity,@Param("userAddress") String userAddress);
 }

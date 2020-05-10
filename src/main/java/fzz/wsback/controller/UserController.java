@@ -1,7 +1,9 @@
 package fzz.wsback.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
 import fzz.wsback.domain.User;
+import fzz.wsback.domain.UserInfo;
 import fzz.wsback.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @author NE
@@ -68,5 +72,21 @@ public class UserController {
         jsonObject.put("userPhone", userService.findUserPhoneByUserId(userId));
         jsonObject.put("userAddress", userService.findUserAddressByUserId(userId));
         return jsonObject.toString();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getUserInfoByUserPhone")
+    public String getUserInfoByUserPhone(String userPhone) {
+        System.out.println(userPhone);
+        JSONObject jsonObject  = (JSONObject) JSONObject.toJSON(userService.getUserInfoByUserPhone(userPhone));
+
+        return jsonObject.toJSONString();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateUserInfo")
+    public void updateUserInfo(String userPhone,String userName,String userEmail,String userSex,Integer userAge,
+                               String userProvince,String userCity,String userAddress) {
+        userService.updateUserInfo(userPhone,userName,userEmail,userSex,userAge,userProvince,userCity,userAddress);
     }
 }

@@ -1,7 +1,10 @@
 package fzz.wsback.service;
 
 import fzz.wsback.domain.User;
+import fzz.wsback.domain.UserInfo;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author NE
@@ -47,4 +50,9 @@ public interface UserService {
      */
 
     String findUserAddressByUserId(Integer userId);
+
+    UserInfo getUserInfoByUserPhone(String  userPhone);
+
+    void updateUserInfo(String userPhone,String userName,String userEmail,String userSex,Integer userAge,
+                        String userProvince,String userCity,String userAddress);
 }

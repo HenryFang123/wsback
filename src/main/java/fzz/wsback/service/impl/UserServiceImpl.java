@@ -2,9 +2,12 @@ package fzz.wsback.service.impl;
 
 import fzz.wsback.dao.UserDao;
 import fzz.wsback.domain.User;
+import fzz.wsback.domain.UserInfo;
 import fzz.wsback.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author NE
@@ -50,6 +53,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public String findUserAddressByUserId(Integer userId) {
         return userDao.getUserAddressByUserId(userId);
+    }
+
+    @Override
+    public UserInfo getUserInfoByUserPhone(String userPhone) {
+        return userDao.getUserInfoByUserPhone(userPhone);
+    }
+
+    @Override
+    public void updateUserInfo(String userPhone, String userName, String userEmail, String userSex, Integer userAge, String userProvince, String userCity, String userAddress) {
+        userDao.updateUserInfo(userPhone,userName,userEmail,userSex,userAge,userProvince,userCity,userAddress);
     }
 
 }
