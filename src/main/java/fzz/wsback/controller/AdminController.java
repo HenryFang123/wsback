@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * @author NE
+ */
 @Controller
-@RequestMapping("/admin")
+@RequestMapping(value = "/admin")
 public class AdminController {
-
     private final AdminService adminService;
 
     @Autowired
@@ -22,21 +25,19 @@ public class AdminController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/checkLogin")
-    public String checkLogin(@RequestParam(value = "adminId", required = false) Integer adminId,
-                             @RequestParam(value = "adminPassword", required = false) String adminPassword,
-                             Model model) {
-        Admin admin = null;
-        admin = adminService.checkLogin(adminId, adminPassword);
+    @RequestMapping(value = "/checkLogin", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public JSONObject checkLogin(@RequestParam(value = "adminId", required = false) Integer adminId,
+                                 @RequestParam(value = "adminPassword", required = false) String adminPassword) {
+        JSONObject jsonObject = new JSONObject();
+        Admin admin = adminService.checkLogin(adminId, adminPassword);
 
         if (admin != null) {
-            JSONObject jsonObject = new JSONObject();
             jsonObject.put("resultCode", '0');
             jsonObject.put("adminName", admin.getAdminName());
             jsonObject.put("businessId", admin.getBusinessId());
-            return jsonObject.toString();
         } else {
-            return "{\"resultCode\":\"1\"}";
+            jsonObject.put("resultCode", '1');
         }
+        return jsonObject;
     }
 }

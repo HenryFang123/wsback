@@ -4,7 +4,6 @@ package fzz.wsback.domain;
  * @author NE
  */
 public class ShopCarInfo {
-
     private Integer shopCarId;
     private Integer userId;
     private Integer businessId;

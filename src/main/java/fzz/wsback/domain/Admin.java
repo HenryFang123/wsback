@@ -4,7 +4,6 @@ package fzz.wsback.domain;
  * @author NE
  */
 public class Admin {
-
     private Integer adminId;
     private String adminName;
     private String adminPassword;
@@ -40,15 +39,5 @@ public class Admin {
 
     public void setBusinessId(Integer businessId) {
         this.businessId = businessId;
-    }
-
-    @Override
-    public String toString() {
-        return "Admin{" +
-                "adminId=" + adminId +
-                ", adminName='" + adminName + '\'' +
-                ", adminPassWord='" + adminPassword + '\'' +
-                ", businessId=" + businessId +
-                '}';
     }
 }

@@ -11,9 +11,8 @@ import java.util.List;
 /**
  * @author NE
  */
-@Service("bookService")
+@Service(value = "bookService")
 public class BookServiceImpl implements BookService {
-
     private final BookDao bookDao;
 
     @Autowired
@@ -27,30 +26,33 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookInfo> getAllBook(Integer businessId, Integer firstIndex, Integer pageSize) {
-
-        return bookDao.getAllBook(businessId, firstIndex, pageSize);
+    public List<BookInfo> getBookInfoByBookName(String bookName) {
+        return bookDao.getBookInfoByBookName(bookName);
     }
 
     @Override
-    public Long getBookCount(Integer businessId) {
-        System.out.println("bookService里count：" + bookDao.getBookCount(businessId));
-        return bookDao.getBookCount(businessId);
+    public List<BookInfo> getBookInfoListByBusinessId(Integer businessId, Integer firstIndex, Integer pageSize) {
+        return bookDao.getBookInfoListByBusinessId(businessId, firstIndex, pageSize);
     }
 
     @Override
-    public void deleteBook(Integer bookId) {
-        bookDao.deleteBook(bookId);
+    public List<BookInfo> getBookInfoListByBusinessIdAndTypeId(Integer businessId, Integer typeId, Integer pageStart, Integer pageSize) {
+        return bookDao.getBookInfoListByBusinessIdAndTypeId(businessId, typeId, pageStart, pageSize);
     }
 
     @Override
-    public List<BookInfo> getBookByName(String bookName) {
-        return bookDao.getBookByName(bookName);
+    public Long getBookInfoCountByBusinessId(Integer businessId) {
+        return bookDao.getBookInfoCountByBusinessId(businessId);
     }
 
     @Override
-    public void deleteBookByName(String bookName, Integer businessId) {
-        bookDao.deleteBookByName(bookName, businessId);
+    public Long getBookInfoCountByBusinessIdAndTypeId(Integer businessId, Integer typeId) {
+        return bookDao.getBookInfoCountByBusinessIdAndTypeId(businessId, typeId);
+    }
+
+    @Override
+    public void insertBookInfo(Integer businessId, String bookName, String bookImagePath, String bookAuthor, String bookPub, String bookYear, String bookIsbn, Double bookPrice, String bookDescription) {
+        bookDao.insertBookInfo(businessId, bookName, bookImagePath, bookAuthor, bookPub, bookYear, bookIsbn, bookPrice, bookDescription);
     }
 
     @Override
@@ -59,7 +61,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void insertBook(Integer businessId, Integer bookId, String bookName, String bookImagePath, String bookAuthor, String bookPub, String bookYear, String bookIsbn, Double bookPrice, String bookDescription) {
-        bookDao.insertBook(businessId, bookId, bookName, bookImagePath, bookAuthor, bookPub, bookYear, bookIsbn, bookPrice, bookDescription);
+    public void deleteBookInfoByBookId(Integer bookId) {
+        bookDao.deleteBookInfoByBookId(bookId);
+    }
+
+    @Override
+    public void deleteBookInfoByBookNameAndBusinessId(String bookName, Integer businessId) {
+        bookDao.deleteBookInfoByBookNameAndBusinessId(bookName, businessId);
     }
 }

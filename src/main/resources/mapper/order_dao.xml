@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="fzz.wsback.dao.OrderDao">
-
     <resultMap type="fzz.wsback.domain.OrderInfo"
                id="OrderResultMap">
         <id column="order_id" property="orderId" jdbcType="INTEGER"/>
@@ -17,41 +16,53 @@
         <result column="total_price" property="totalPrice" jdbcType="DOUBLE"/>
     </resultMap>
 
-    <select id="getOrderInfo" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
-        select * from order_info where business_id=#{businessId} limit #{firstIndex},#{pageSize}
+    <!-- 通过订单 ID 获取订单信息 -->
+    <select id="getOrderInfoByOrderId" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
+        SELECT *
+        FROM order_info
+        WHERE order_id = #{orderId}
     </select>
 
-    <select id="getOrderCount"  resultType="java.lang.Long" parameterType="java.lang.Integer">
-        SELECT count(*)  FROM order_info  where business_id=#{businessId}
-
+    <!-- 通过用户 ID 获取用户所有订单信息 -->
+    <select id="getOrderInfoListByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM order_info
+        WHERE user_id = #{userId}
     </select>
 
-    <select id="getOrdersByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
-        select *
-        from order_info
-        where user_id =#{userId}
+    <!-- 通过店铺 ID 获取店铺订单信息 -->
+    <select id="getOrderInfoListByBusinessId" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
+        SELECT *
+        FROM order_info
+        WHERE business_id = #{businessId}
+        LIMIT #{firstIndex}, #{pageSize}
     </select>
 
-    <select id="deleteOrder" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
-        delete
-        from order_info
-        where order_id = #{orderId}
+    <!-- 通过店铺 ID 获取当前店铺总订单量 -->
+    <select id="getOrderInfoCountByBusinessId" resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM order_info
+        WHERE business_id = #{businessId}
     </select>
 
-    <select id="updateOrder" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
-        update order_info
-        set user_address = #{userAddress} ,user_phone = #{userPhone}
-        where order_id = #{orderId}
-    </select>
-
-    <select id="getOneOrder" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
-        select *
-        from order_info
-        where order_id = #{orderId}
-    </select>
-
-    <insert id="addOrder">
-        insert into order_info (order_id, user_address, user_id, user_phone,business_id,book_id,book_name,book_image_path,book_number,total_price)
-        values (#{orderId}, #{userAddress}, #{userId}, #{userPhone},#{businessId},#{bookId},#{bookName},#{bookImagePath},#{bookNumber},#{totalPrice})
+    <!-- 新建订单 -->
+    <insert id="insertOrderInfo">
+        INSERT
+        INTO order_info (order_id, user_address, user_id, user_phone, business_id, book_id, book_name, book_image_path, book_number, total_price)
+        VALUES (#{orderId}, #{userAddress}, #{userId}, #{userPhone}, #{businessId}, #{bookId}, #{bookName}, #{bookImagePath}, #{bookNumber}, #{totalPrice})
     </insert>
+
+    <!-- 更新订单信息 -->
+    <update id="updateOrderInfo" parameterType="fzz.wsback.domain.OrderInfo">
+        UPDATE order_info
+        SET user_address = #{userAddress}, user_phone = #{userPhone}
+        WHERE order_id = #{orderId}
+    </update>
+
+    <!-- 通过订单 ID 删除订单 -->
+    <delete id="deleteOrderInfoByOrderId" parameterType="fzz.wsback.domain.OrderInfo">
+        DELETE
+        FROM order_info
+        WHERE order_id = #{orderId}
+    </delete>
 </mapper>

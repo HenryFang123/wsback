@@ -6,14 +6,13 @@ import org.springframework.stereotype.Repository;
 /**
  * @author NE
  */
-@Repository("businessService")
+@Repository(value = "businessService")
 public interface BusinessService {
-
     /**
-     * get data from mysql by business id.
+     * 通过店铺 ID 获取店铺信息
      *
-     * @param businessId
+     * @param businessId 店铺 ID
      * @return BusinessInfo
      */
-    BusinessInfo getBusinessInfoById(Integer businessId);
+    BusinessInfo getBusinessInfoByBusinessId(Integer businessId);
 }

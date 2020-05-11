@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 /**
  * @author NE
  */
-@Service("utilsService")
+@Service(value = "utilsService")
 public class UtilsServiceImpl implements UtilsService {
-
-    private UserDao userDao = null;
+    private final UserDao userDao;
 
     @Autowired
     public UtilsServiceImpl(UserDao userDao) {

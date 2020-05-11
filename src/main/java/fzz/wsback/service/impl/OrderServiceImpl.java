@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author fh
  */
-@Service("orderService")
+@Service(value = "orderService")
 public class OrderServiceImpl implements OrderService {
     private final OrderDao orderDao;
 
@@ -20,48 +20,47 @@ public class OrderServiceImpl implements OrderService {
         this.orderDao = orderDao;
     }
 
-
     @Override
-    public List<OrderInfo> getOrderInfo(Integer businessId, Integer firstIndex, Integer pageSize) {
-        return orderDao.getOrderInfo(businessId, firstIndex, pageSize);
+    public List<OrderInfo> getOrderInfoByOrderId(Integer orderId) {
+        return orderDao.getOrderInfoByOrderId(orderId);
     }
 
     @Override
-    public void deleteOrder(Integer orderId) {
-        orderDao.deleteOrder(orderId);
+    public List<OrderInfo> getOrderInfoListByUserId(Integer userId) {
+        return orderDao.getOrderInfoListByUserId(userId);
     }
 
     @Override
-    public Long getOrderCount(Integer businessId) {
-        return orderDao.getOrderCount(businessId);
+    public List<OrderInfo> getOrderInfoListByBusinessId(Integer businessId, Integer firstIndex, Integer pageSize) {
+        return orderDao.getOrderInfoListByBusinessId(businessId, firstIndex, pageSize);
     }
 
     @Override
-    public void updateOrder(Integer orderId, String userAddress, String userPhone) {
-        orderDao.updateOrder(orderId, userAddress, userPhone);
+    public Long getOrderInfoCountByBusinessId(Integer businessId) {
+        return orderDao.getOrderInfoCountByBusinessId(businessId);
     }
 
     @Override
-    public List<OrderInfo> getOneOrder(Integer orderId) {
-        return orderDao.getOneOrder(orderId);
+    public void insertOrderInfo(Integer orderId,
+                                String userAddress,
+                                Integer userId,
+                                String userPhone,
+                                Integer businessId,
+                                Integer bookId,
+                                String bookName,
+                                String bookImagePath,
+                                Integer bookNumber,
+                                Double totalPrice) {
+        orderDao.insertOrderInfo(orderId, userAddress, userId, userPhone, businessId, bookId, bookName, bookImagePath, bookNumber, totalPrice);
     }
 
     @Override
-    public void addOrder(Integer orderId,
-                         String userAddress,
-                         Integer userId,
-                         String userPhone,
-                         Integer businessId,
-                         Integer bookId,
-                         String bookName,
-                         String bookImagePath,
-                         Integer bookNumber,
-                         Double totalPrice) {
-        orderDao.addOrder(orderId, userAddress, userId, userPhone, businessId, bookId, bookName, bookImagePath, bookNumber, totalPrice);
+    public void updateOrderInfo(Integer orderId, String userAddress, String userPhone) {
+        orderDao.updateOrderInfo(orderId, userAddress, userPhone);
     }
 
     @Override
-    public List<OrderInfo> getOrdersByUserId(Integer userId) {
-        return orderDao.getOrdersByUserId(userId);
+    public void deleteOrderInfoByOrderId(Integer orderId) {
+        orderDao.deleteOrderInfoByOrderId(orderId);
     }
 }

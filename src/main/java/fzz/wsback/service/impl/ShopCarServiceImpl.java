@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author NE
  */
-@Service("shopCarService")
+@Service(value = "shopCarService")
 public class ShopCarServiceImpl implements ShopCarService {
     private final ShopCarDao shopCarDao;
     private final BookDao bookDao;
@@ -27,19 +27,8 @@ public class ShopCarServiceImpl implements ShopCarService {
     }
 
     @Override
-    public Integer addItemToShopCar(ShopCarInfo shopCarInfo) {
-        try {
-            shopCarDao.addItemToShopCar(shopCarInfo.getUserId(), shopCarInfo.getBusinessId(), shopCarInfo.getBookId(), shopCarInfo.getBookNumber());
-            return 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    @Override
-    public JSONArray getShopCarInfoByUserId(Integer userId) {
-        List<ShopCarInfo> shopCarInfos = shopCarDao.getShopCarInfoByUserId(userId);
+    public JSONArray getShopCarListInfoByUserId(Integer userId) {
+        List<ShopCarInfo> shopCarInfos = shopCarDao.getShopCarInfoListByUserId(userId);
         BookInfo bookInfo = new BookInfo();
         JSONArray jsonArray = new JSONArray();
         Integer id = 1;
@@ -66,25 +55,28 @@ public class ShopCarServiceImpl implements ShopCarService {
             jsonObject.put("book_number", shopCarInfo.getBookNumber());
 
             jsonArray.add(jsonObject);
-
-            id++;
+            id ++;
         }
-
         return jsonArray;
     }
 
     @Override
-    public void updateBookNumber(Integer shopCarId, Integer bookNumber) {
-        shopCarDao.updateBookNumber(shopCarId, bookNumber);
+    public void insertShopCarInfo(ShopCarInfo shopCarInfo) {
+        shopCarDao.insertShopCarInfo(shopCarInfo.getUserId(), shopCarInfo.getBusinessId(), shopCarInfo.getBookId(), shopCarInfo.getBookNumber());
     }
 
     @Override
-    public void updateBookNumber2(Integer shopCarId, Integer bookNumber) {
-        shopCarDao.updateBookNumber2(shopCarId, bookNumber);
+    public void updateShopCarInfoBookNumberAdd(Integer shopCarId, Integer bookNumber) {
+        shopCarDao.updateShopCarInfoBookNumberAdd(shopCarId, bookNumber);
     }
 
     @Override
-    public void deleteBookByShopCarId(Integer shopCarId) {
-        shopCarDao.deleteBookByShopCarId(shopCarId);
+    public void updateShopCarInfoBookNumberChange(Integer shopCarId, Integer bookNumber) {
+        shopCarDao.updateShopCarInfoBookNumberChange(shopCarId, bookNumber);
+    }
+
+    @Override
+    public void deleteShopCarInfoByShopCarId(Integer shopCarId) {
+        shopCarDao.deleteShopCarInfoByShopCarId(shopCarId);
     }
 }

@@ -4,7 +4,6 @@ package fzz.wsback.domain;
  * @author NE
  */
 public class UserInfo {
-
     private Integer userId;
     private String userName;
     private String userPassWord;

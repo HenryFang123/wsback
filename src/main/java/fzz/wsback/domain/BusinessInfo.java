@@ -4,7 +4,6 @@ package fzz.wsback.domain;
  * @author NE
  */
 public class BusinessInfo {
-
     private Integer businessId;
     private String businessImagePath;
     private String businessName;

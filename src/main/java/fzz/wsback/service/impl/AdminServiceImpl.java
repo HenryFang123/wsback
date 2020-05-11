@@ -6,9 +6,12 @@ import fzz.wsback.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("adminService")
+/**
+ * @author NE
+ */
+@Service(value = "adminService")
 public class AdminServiceImpl implements AdminService {
-    private AdminDao adminDao = null;
+    private final AdminDao adminDao;
 
     @Autowired
     public AdminServiceImpl(AdminDao adminDao) {
@@ -17,7 +20,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin checkLogin(Integer adminId, String adminPassword) {
-        Admin admin = adminDao.getAdminObjectByAdminId(adminId);
+        Admin admin = adminDao.getAdminByAdminId(adminId);
 
         if (admin != null && admin.getAdminPassword().equals(adminPassword)) {
             return admin;

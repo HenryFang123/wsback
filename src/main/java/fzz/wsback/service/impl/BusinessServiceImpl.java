@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 /**
  * @author NE
  */
-@Service("businessService")
+@Service(value = "businessService")
 public class BusinessServiceImpl implements BusinessService {
-
     private final BusinessDao businessDao;
 
     @Autowired
@@ -20,7 +19,7 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public BusinessInfo getBusinessInfoById(Integer businessId) {
-        return businessDao.getBusinessInfoById(businessId);
+    public BusinessInfo getBusinessInfoByBusinessId(Integer businessId) {
+        return businessDao.getBusinessInfoByBusinessId(businessId);
     }
 }

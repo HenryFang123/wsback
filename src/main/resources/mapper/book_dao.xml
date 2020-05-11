@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="fzz.wsback.dao.BookDao">
-
     <resultMap type="fzz.wsback.domain.BookInfo"
                id="BookResultMap">
         <id column="book_id" property="bookId" jdbcType="INTEGER"/>
@@ -21,50 +20,75 @@
         <result column="book_status" property="bookStatus" jdbcType="INTEGER"/>
     </resultMap>
 
-    <!-- 根据书籍ID获取信息表信息 -->
+    <!-- 通过书籍 ID 获取书籍信息 -->
     <select id="getBookInfoById" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
-        select *
-        from book_info
-        where book_id = #{bookId}
+        SELECT *
+        FROM book_info
+        WHERE book_id = #{bookId}
     </select>
 
-    <select id="getAllBook" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
-        SELECT * FROM book_info  where business_id=#{businessId} limit #{firstIndex},#{pageSize}
-
+    <!-- 通过书籍名称获取书籍信息 -->
+    <select id="getBookInfoByBookName" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
+        SELECT *
+        FROM book_info
+        WHERE book_name = #{bookName}
     </select>
 
-    <select id="getBookCount"  resultType="java.lang.Long" parameterType="java.lang.Integer">
-        SELECT count(*)  FROM book_info  where business_id=#{businessId}
-
+    <!-- 通过店铺 ID、分页起始位置、分页大小获取页内书籍信息列表 -->
+    <select id="getBookInfoListByBusinessId" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
+        SELECT *
+        FROM book_info
+        WHERE business_id = #{businessId}
+        LIMIT #{firstIndex}, #{pageSize}
     </select>
 
-
-    <delete id="deleteBook" parameterType="fzz.wsback.domain.BookInfo">
-        delete
-        from book_info
-        where book_id = #{bookId}
-    </delete>
-
-    <select id="getBookByName" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
-        select *
-        from book_info
-        where book_name = #{bookName}
+    <!-- 通过店铺 ID、类型 ID、分页起始位置、分页大小获取当前页所需数据 -->
+    <select id="getBookInfoListByBusinessIdAndTypeId" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
+        SELECT *
+        FROM book_info
+        WHERE business_id = #{businessId} AND book_type_id = #{typeId}
+        LIMIT #{pageStart}, #{pageSize}
     </select>
 
-    <delete id="deleteBookByName" parameterType="fzz.wsback.domain.BookInfo">
-        delete
-        from book_info
-        where book_name = #{bookName} and business_id = #{businessId}
-    </delete>
+    <!-- 通过店铺 ID 获取该店铺下所有书籍总数 -->
+    <select id="getBookInfoCountByBusinessId"  resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM book_info
+        WHERE business_id = #{businessId}
+    </select>
 
+    <!-- 通过店铺 ID 和 类型 ID 获取当前分类下的总书籍个数 -->
+    <select id="getBookInfoCountByBusinessIdAndTypeId"  resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM book_info
+        WHERE business_id = #{businessId} AND book_type_id = #{typeId}
+    </select>
+
+    <!-- 插入书籍信息 -->
+    <insert id="insertBookInfo">
+        INSERT
+        INTO book_info (business_id, book_name, book_image_path, book_author, book_pub, book_year, book_isbn, book_price, book_description)
+        VALUES (#{businessId}, #{bookName}, #{bookImagePath}, #{bookAuthor}, #{bookPub}, #{bookYear}, #{bookIsbn}, #{bookPrice}, #{bookDescription})
+    </insert>
+
+    <!-- 更新书籍信息 -->
     <update id="updateBookInfo" parameterType="fzz.wsback.domain.BookInfo">
-        update book_info
-        set book_image_path = #{bookImagePath} ,book_price = #{bookPrice} ,book_description = #{bookDescription}
-        where business_id = #{businessId} and book_name = #{bookName};
+        UPDATE book_info
+        SET book_image_path = #{bookImagePath}, book_price = #{bookPrice}, book_description = #{bookDescription}
+        WHERE business_id = #{businessId} AND book_name = #{bookName};
     </update>
 
-    <insert id="insertBook">
-        insert into book_info (business_id,book_id, book_name, book_image_path, book_author,book_pub,book_year,book_isbn,book_price,book_description)
-        values (#{businessId}, #{bookId},#{bookName}, #{bookImagePath}, #{bookAuthor},#{bookPub},#{bookYear},#{bookIsbn},#{bookPrice},#{bookDescription})
-    </insert>
+    <!-- 通过书籍 ID 删除该条书籍 -->
+    <delete id="deleteBookInfoByBookId" parameterType="fzz.wsback.domain.BookInfo">
+        DELETE
+        FROM book_info
+        WHERE book_id = #{bookId}
+    </delete>
+
+    <!-- 通过书籍名称、店铺 ID删除该条书籍信息 -->
+    <delete id="deleteBookInfoByBookNameAndBusinessId" parameterType="fzz.wsback.domain.BookInfo">
+        DELETE
+        FROM book_info
+        WHERE book_name = #{bookName} AND business_id = #{businessId}
+    </delete>
 </mapper>

@@ -7,45 +7,45 @@ import org.springframework.stereotype.Repository;
 /**
  * @author NE
  */
-@Repository("shopCarService")
+@Repository(value = "shopCarService")
 public interface ShopCarService {
+    /**
+     * 通过用户 ID 获取该用户所有购物车信息
+     *
+     * @param userId 用户 ID
+     * @return List ShopCarInfo 实体类对象列表
+     */
+    JSONArray getShopCarListInfoByUserId(Integer userId);
 
     /**
-     * add shop car item to mysql.
+     * 新增购物车信息
      *
-     * @param shopCarInfo
-     * @return resultCode
+     * @param shopCarInfo 实体类对象
      */
-    Integer addItemToShopCar(ShopCarInfo shopCarInfo);
+    void insertShopCarInfo(ShopCarInfo shopCarInfo);
 
     /**
-     * get shop car item from mysql by user id.
+     * 更新购物车中书籍数量（主增加）
      *
-     * @param userId
-     * @return JSONArray
+     * @param shopCarId 购物车 ID
+     * @param bookNumber 购物车中书籍数量
      */
-    JSONArray getShopCarInfoByUserId(Integer userId);
+    void updateShopCarInfoBookNumberAdd(Integer shopCarId,
+                                        Integer bookNumber);
 
     /**
-     * update book number by shop car id.
+     * 更新购物车中书籍数量（主改变）
      *
-     * @param shopCarId
-     * @param bookNumber
+     * @param shopCarId 购物车 ID
+     * @param bookNumber 购物车中书籍数量
      */
-    void updateBookNumber(Integer shopCarId, Integer bookNumber);
+    void updateShopCarInfoBookNumberChange(Integer shopCarId,
+                                           Integer bookNumber);
 
     /**
-     * update book number by shop car id.
+     * 通过购物车 ID 删除购物车信息
      *
-     * @param shopCarId
-     * @param bookNumber
+     * @param shopCarId 购物车 ID
      */
-    void updateBookNumber2(Integer shopCarId, Integer bookNumber);
-
-    /**
-     * delete book  by shop car id.
-     *
-     * @param shopCarId
-     */
-    void deleteBookByShopCarId(Integer shopCarId);
+    void deleteShopCarInfoByShopCarId(Integer shopCarId);
 }

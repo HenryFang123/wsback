@@ -7,14 +7,11 @@ import fzz.wsback.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * @author NE
  */
-@Service("userService")
+@Service(value = "userService")
 public class UserServiceImpl implements UserService {
-
     private UserDao userDao = null;
 
     @Autowired
@@ -24,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User checkLogin(String userPhone, String userPassWord) {
-        User user = userDao.getUserObjectByUserSelf(userPhone);
+        User user = userDao.getUserInfoByUserSelf(userPhone);
 
         if (user != null && user.getUserPassWord().equals(userPassWord)) {
             return user;
@@ -46,18 +43,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String findUserPhoneByUserId(Integer userId) {
+    public UserInfo getUserInfoByUserPhone(String userPhone) {
+        return userDao.getUserInfoByUserPhone(userPhone);
+    }
+
+    @Override
+    public String getUserPhoneByUserId(Integer userId) {
         return userDao.getUserPhoneByUserId(userId);
     }
 
     @Override
-    public String findUserAddressByUserId(Integer userId) {
+    public String getUserAddressByUserId(Integer userId) {
         return userDao.getUserAddressByUserId(userId);
-    }
-
-    @Override
-    public UserInfo getUserInfoByUserPhone(String userPhone) {
-        return userDao.getUserInfoByUserPhone(userPhone);
     }
 
     @Override

@@ -10,66 +10,94 @@ import java.util.List;
 /**
  * @author NE
  */
-@Repository("UserDao")
+@Repository(value = "UserDao")
 public interface UserDao {
-
     /**
-     * find data in mysql by userPhone.
+     * 通过用户手机号获取用户信息
      *
-     * @param userPhone
+     * @param userPhone 用户手机号
      * @return User
      */
-    User getUserObjectByUserSelf(@Param("userPhone") String userPhone);
+    User getUserInfoByUserSelf(@Param("userPhone") String userPhone);
 
     /**
-     * find userId in mysql by userPhone.
+     * 通过用户手机号获取用户 ID
      *
-     * @param userPhone
+     * @param userPhone 用户手机号
      * @return userId
      */
     Integer getUserIdByUserPhone(@Param("userPhone") String userPhone);
 
     /**
-     * find userPhone in mysql by userId.
+     * 通过用户手机号获取用户信息
      *
-     * @param userId
+     * @param userPhone 用户手机号
+     * @return UserInfo 实体类对象
+     */
+    UserInfo getUserInfoByUserPhone(@Param("userPhone")String userPhone);
+
+    /**
+     * 通过用户 ID 获取用户手机号
+     *
+     * @param userId 用户 ID
      * @return userPhone
      */
     String getUserPhoneByUserId(@Param("userId") Integer userId);
 
     /**
-     * find userAddress in mysql by userId.
+     * 通过用户 ID 获取用户收货地址
      *
-     * @param userId
+     * @param userId 用户 ID
      * @return userAddress
      */
     String getUserAddressByUserId(@Param("userId") Integer userId);
 
     /**
-     * register user by the data from front.
+     * 注册用户并填写信息到用户信息表
      *
-     * @param userId
-     * @param userName
-     * @param userPassWord
-     * @param userPhone
-     * @param userTar
+     * @param userId 用户 ID
+     * @param userName 用户名
+     * @param userPassWord 用户密码
+     * @param userPhone 用户手机号
+     * @param userTar 用户标识
      */
-    void registerInfoTable(@Param("userId") Integer userId, @Param("userName") String userName, @Param("userPassWord") String userPassWord, @Param("userPhone") String userPhone, @Param("userTar") Integer userTar);
+    void registerInfoTable(@Param("userId") Integer userId,
+                           @Param("userName") String userName,
+                           @Param("userPassWord") String userPassWord,
+                           @Param("userPhone") String userPhone,
+                           @Param("userTar") Integer userTar);
 
     /**
-     * register user by the data from front.
+     * 注册用户并填写信息到用户登录表
      *
-     * @param userId
-     * @param userName
-     * @param userPassWord
-     * @param userPhone
+     * @param userId 用户 ID
+     * @param userName 用户名
+     * @param userPassWord 用户密码
+     * @param userPhone 用户手机号
      */
-    void registerLoginTable(@Param("userId") Integer userId, @Param("userName") String userName, @Param("userPhone") String userPhone, @Param("userPassWord") String userPassWord);
+    void registerLoginTable(@Param("userId") Integer userId,
+                            @Param("userName") String userName,
+                            @Param("userPhone") String userPhone,
+                            @Param("userPassWord") String userPassWord);
 
-    UserInfo getUserInfoByUserPhone(@Param("userPhone")String userPhone);
-
-    void updateUserInfo(@Param("userPhone") String userPhone,@Param("userName") String userName,
-                        @Param("userEmail") String userEmail,@Param("userSex") String userSex,
-                        @Param("userAge") Integer userAge, @Param("userProvince") String userProvince,
-                        @Param("userCity") String userCity,@Param("userAddress") String userAddress);
+    /**
+     * 更新用户信息
+     *
+     * @param userPhone 用户手机号
+     * @param userName 用户名
+     * @param userEmail 用户邮箱地址
+     * @param userSex 用户性别
+     * @param userAge 用户年龄
+     * @param userProvince 用户省份
+     * @param userCity 用户城市居住地
+     * @param userAddress 用户收货地址
+     */
+    void updateUserInfo(@Param("userPhone") String userPhone,
+                        @Param("userName") String userName,
+                        @Param("userEmail") String userEmail,
+                        @Param("userSex") String userSex,
+                        @Param("userAge") Integer userAge,
+                        @Param("userProvince") String userProvince,
+                        @Param("userCity") String userCity,
+                        @Param("userAddress") String userAddress);
 }

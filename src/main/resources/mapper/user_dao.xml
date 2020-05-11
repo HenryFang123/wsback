@@ -27,55 +27,59 @@
         <result column="user_tar" property="userTar" jdbcType="INTEGER"/>
     </resultMap>
 
-    <!--    查找登录表中信息-->
-    <select id="getUserObjectByUserSelf" resultMap="UserResultMap" parameterType="fzz.wsback.domain.User">
-        select *
-        from user_login
-        where user_phone = #{userPhone}
+    <!-- 通过用户手机号获取用户信息 -->
+    <select id="getUserInfoByUserSelf" resultMap="UserResultMap" parameterType="fzz.wsback.domain.User">
+        SELECT *
+        FROM user_login
+        WHERE user_phone = #{userPhone}
     </select>
 
-    <!--    根据用户Phone信息查找用户ID信息-->
+    <!-- 通过用户手机号获取用户 ID -->
     <select id="getUserIdByUserPhone" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select user_id
-        from user_login
-        where user_id = #{userPhone}
+        SELECT user_id
+        FROM user_login
+        WHERE user_id = #{userPhone}
     </select>
 
-    <!--    根据用户Id信息查找用户Phone信息-->
-    <select id="getUserPhoneByUserId" resultType="java.lang.String" parameterType="java.lang.Integer">
-        select user_phone
-        from user_info
-        where user_id = #{userId}
-    </select>
-
-    <!--    根据用户Id信息查找用户Address信息-->
-    <select id="getUserAddressByUserId" resultType="java.lang.String" parameterType="java.lang.Integer">
-        select user_address
-        from user_info
-        where user_id = #{userId}
-    </select>
-
-    <!--    插入注册信息到用户信息表-->
-    <insert id="registerInfoTable">
-        insert into user_info (user_id, user_name, pass_word, user_phone, user_tar)
-        values (#{userId}, #{userName}, #{userPassWord}, #{userPhone}, #{userTar})
-    </insert>
-    <!--    插入注册信息到用户登录表-->
-    <insert id="registerLoginTable">
-        insert into user_login (user_id, user_name, user_phone, pass_word)
-        values (#{userId}, #{userName}, #{userPhone}, #{userPassWord})
-    </insert>
-
+    <!-- 通过用户手机号获取用户信息 -->
     <select id="getUserInfoByUserPhone" resultMap="UserInfoResultMap" parameterType="java.lang.String">
-        select *
-        from user_info
-        where user_phone = #{userPhone}
+        SELECT *
+        FROM user_info
+        WHERE user_phone = #{userPhone}
     </select>
 
-    <update id="updateUserInfo" parameterType="fzz.wsback.domain.UserInfo">
-        update user_info
-        set user_name = #{userName} ,user_email = #{userEmail} ,user_sex = #{userSex} ,user_age = #{userAge} ,user_province = #{userProvince} ,user_city = #{userCity} ,user_address = #{userAddress}
-        where user_phone = #{userPhone} 
-    </update>
+    <!-- 通过用户 ID 获取用户手机号 -->
+    <select id="getUserPhoneByUserId" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT user_phone
+        FROM user_info
+        WHERE user_id = #{userId}
+    </select>
 
+    <!-- 通过用户 ID 获取用户收货地址 -->
+    <select id="getUserAddressByUserId" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT user_address
+        FROM user_info
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- 注册用户并填写信息到用户信息表 -->
+    <insert id="registerInfoTable">
+        INSERT
+        INTO user_info (user_id, user_name, pass_word, user_phone, user_tar)
+        VALUES (#{userId}, #{userName}, #{userPassWord}, #{userPhone}, #{userTar})
+    </insert>
+
+    <!-- 注册用户并填写信息到用户登录表 -->
+    <insert id="registerLoginTable">
+        INSERT
+        INTO user_login (user_id, user_name, user_phone, pass_word)
+        VALUES (#{userId}, #{userName}, #{userPhone}, #{userPassWord})
+    </insert>
+
+    <!-- 更新用户信息 -->
+    <update id="updateUserInfo" parameterType="fzz.wsback.domain.UserInfo">
+        UPDATE user_info
+        SET user_name = #{userName} ,user_email = #{userEmail} ,user_sex = #{userSex} ,user_age = #{userAge} ,user_province = #{userProvince} ,user_city = #{userCity} ,user_address = #{userAddress}
+        WHERE user_phone = #{userPhone}
+    </update>
 </mapper>

@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="fzz.wsback.dao.BusinessDao">
-
     <resultMap type="fzz.wsback.domain.BusinessInfo"
                id="BusinessResultMap">
         <id column="business_id" property="businessId" jdbcType="INTEGER"/>
@@ -12,11 +11,10 @@
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
 
-    <!-- 根据店铺ID获取信息表信息 -->
-    <select id="getBusinessInfoById" resultMap="BusinessResultMap" parameterType="fzz.wsback.domain.BusinessInfo">
-        select *
-        from business_info
-        where business_id = #{businessId}
+    <!-- 通过店铺 ID 获取店铺信息 -->
+    <select id="getBusinessInfoByBusinessId" resultMap="BusinessResultMap" parameterType="fzz.wsback.domain.BusinessInfo">
+        SELECT *
+        FROM business_info
+        WHERE business_id = #{businessId}
     </select>
-
 </mapper>

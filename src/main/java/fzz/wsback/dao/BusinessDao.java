@@ -7,14 +7,13 @@ import org.springframework.stereotype.Repository;
 /**
  * @author NE
  */
-@Repository("BusinessDao")
+@Repository(value = "BusinessDao")
 public interface BusinessDao {
-
     /**
-     * get data from mysql by business id.
+     * 通过店铺 ID 获取店铺信息
      *
-     * @param businessId
-     * @return BusinessInfo
+     * @param businessId 店铺 ID
+     * @return BusinessInfo 实体类对象
      */
-    BusinessInfo getBusinessInfoById(@Param("businessId") Integer businessId);
+    BusinessInfo getBusinessInfoByBusinessId(@Param("businessId") Integer businessId);
 }

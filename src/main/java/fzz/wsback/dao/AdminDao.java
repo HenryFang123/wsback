@@ -7,8 +7,13 @@ import org.springframework.stereotype.Repository;
 /**
  * @author NE
  */
-@Repository("AdminDao")
+@Repository(value = "AdminDao")
 public interface AdminDao {
-
-    Admin getAdminObjectByAdminId(@Param("adminId") Integer adminId);
+    /**
+     * 通过管理员 ID 获取管理员信息
+     *
+     * @param adminId 管理员 ID
+     * @return Admin 实体类对象
+     */
+    Admin getAdminByAdminId(@Param("adminId") Integer adminId);
 }

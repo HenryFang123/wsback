@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author NE
  */
 @Controller
-@RequestMapping("/utils")
+@RequestMapping(value = "/utils")
 public class UtilsController {
     private final UtilsService utilsService;
     private final BookService bookService;
@@ -31,49 +32,50 @@ public class UtilsController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/checkPhone")
-    public String checkPhone(@RequestParam(value = "userPhone", required = false) String userPhone,
-                             Model model) {
-        Integer userId = utilsService.checkPhone(userPhone);
+    @RequestMapping(value = "/checkPhone", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public JSONObject checkPhone(@RequestParam(value = "userPhone", required = false) String userPhone) {
+        JSONObject jsonObject = new JSONObject();
 
-        if (userId == 0) {
+        if (utilsService.checkPhone(userPhone) == 0) {
             // 失败标志
-            return "{\"resultCode\":\"0\"}";
+            jsonObject.put("resultCode", '0');
         } else {
             // 成功标志
-            return "{\"resultCode\":\"1\"}";
+            jsonObject.put("resultCode", '1');
         }
+        return jsonObject;
     }
 
     @ResponseBody
-    @RequestMapping(value = "/sendSms")
-    public String sendSms(@RequestParam(value = "userPhone", required = false) String userPhone,
-                          Model model) {
-        Integer phoneCode = utilsService.sendSms(userPhone);
+    @RequestMapping(value = "/sendSms", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public JSONObject sendSms(@RequestParam(value = "userPhone", required = false) String userPhone) {
+        JSONObject jsonObject = new JSONObject();
 
-        if (phoneCode == 0) {
+        if (utilsService.sendSms(userPhone) == 0) {
             // 失败标志
-            return "{\"resultCode\":\"0\"}";
+            jsonObject.put("resultCode", '0');
         } else {
             // 成功标志
-            return "{\"resultCode\":\"1\",\"phoneCode\":\"" + phoneCode + "\"}";
+            jsonObject.put("resultCode", '1');
+            jsonObject.put("phoneCode", utilsService.sendSms(userPhone));
         }
+        return jsonObject;
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getInfoById", produces = {"application/json;charset=UTF-8"})
-    public String getInfoById(@RequestParam(value = "bookId", required = false) Integer bookId,
-                              @RequestParam(value = "businessId", required = false) Integer businessId,
-                              Model model) {
-        BookInfo bookInfo = null;
-        BusinessInfo businessInfo = null;
-        bookInfo = bookService.getBookInfoById(bookId);
-        businessInfo = businessService.getBusinessInfoById(businessId);
+    @RequestMapping(value = "/getInfoById", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public JSONObject getInfoById(@RequestParam(value = "bookId", required = false) Integer bookId,
+                                  @RequestParam(value = "businessId", required = false) Integer businessId) {
+        JSONObject jsonObject = new JSONObject();
+        BookInfo bookInfo = bookService.getBookInfoById(bookId);;
+        BusinessInfo businessInfo = businessService.getBusinessInfoByBusinessId(businessId);
 
         if (bookInfo != null && businessInfo != null) {
-            return "{\"bookInfo\":" + JSONObject.toJSON(bookInfo).toString() + ",\"businessInfo\":" + JSONObject.toJSON(businessInfo).toString() + "}";
+            jsonObject.put("bookInfo", JSONObject.toJSON(bookInfo));
+            jsonObject.put("businessInfo", JSONObject.toJSON(businessInfo));
         } else {
-            return "{\"resultCode\":\"0\"}";
+            jsonObject.put("resultCode", '0');
         }
+        return jsonObject;
     }
 }

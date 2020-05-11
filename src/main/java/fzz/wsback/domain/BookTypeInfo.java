@@ -4,7 +4,6 @@ package fzz.wsback.domain;
  * @author NE
  */
 public class BookTypeInfo {
-
     private Integer bookTypeId;
     private String bookTypeName;
 

@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="fzz.wsback.dao.AdminDao">
-
     <resultMap type="fzz.wsback.domain.Admin"
                id="AdminResultMap">
         <id column="admin_id" property="adminId" jdbcType="INTEGER"/>
@@ -11,13 +10,10 @@
         <result column="pass_word" property="adminPassword" jdbcType="VARCHAR"/>
     </resultMap>
 
-
-    <!--    查找登录表中信息-->
-    <select id="getAdminObjectByAdminId" resultMap="AdminResultMap" parameterType="fzz.wsback.domain.Admin">
-        select *
-        from admin_login
-        where admin_id = #{adminId}
+    <!-- 通过管理员 ID 获取管理员信息 -->
+    <select id="getAdminByAdminId" resultMap="AdminResultMap" parameterType="fzz.wsback.domain.Admin">
+        SELECT *
+        FROM admin_login
+        WHERE admin_id = #{adminId}
     </select>
-
-
 </mapper>
