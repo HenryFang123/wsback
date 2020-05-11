@@ -26,7 +26,12 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     }
 
     @Override
-    public void updateShippingAddress(Integer id,String userPhone, String consignee, String province, String city, String address, String postPhone) {
-        shippingAddressDao.updateShippingAddress(id,userPhone,consignee,province,city,address,postPhone);
+    public void updateShippingAddress(Integer id,String userPhone, String consignee, String province, String city, String region, String address, String postPhone) {
+        shippingAddressDao.updateShippingAddress(id,userPhone,consignee,province,city,region,address,postPhone);
+    }
+
+    @Override
+    public void insertAddress(String userPhone, String consignee, String province, String city, String region, String address, String postPhone) {
+        shippingAddressDao.insertAddress(userPhone,consignee,province,city,region,address,postPhone);
     }
 }

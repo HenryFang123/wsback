@@ -24,7 +24,7 @@ public interface ShippingAddressService {
      * @param id 收货地址 ID
      * @param userPhone 用户手机号
      * @param consignee 收货人
-     * @param province 生粉
+     * @param province 省份
      * @param city 城市
      * @param address 详细地址
      * @param postPhone 收货人手机号
@@ -34,6 +34,25 @@ public interface ShippingAddressService {
                                String consignee,
                                String province,
                                String city,
+                               String region,
                                String address,
                                String postPhone);
+    /**
+     * 增加用户收货地址
+     *
+     * @param userPhone 用户手机号
+     * @param consignee 收货人
+     * @param province 省份
+     * @param city 城市
+     * @param region 区
+     * @param address 详细地址
+     * @param postPhone 收货人手机号
+     */
+    void insertAddress(String userPhone,
+                       String consignee,
+                       String province,
+                       String city,
+                       String region,
+                       String address,
+                       String postPhone);
 }

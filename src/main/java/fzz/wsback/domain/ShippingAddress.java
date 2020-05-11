@@ -9,6 +9,7 @@ public class ShippingAddress {
     private String consignee;
     private String province;
     private String city;
+    private String region;
     private String address;
     private String postPhone;
 
@@ -51,6 +52,10 @@ public class ShippingAddress {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public String getRegion() { return region; }
+
+    public void setRegion(String region) { this.region = region; }
 
     public String getAddress() {
         return address;

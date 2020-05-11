@@ -13,6 +13,7 @@ public class UserInfo {
     private Integer userAge;
     private String userProvince;
     private String userCity;
+    private String userRegion;
     private String userAddress;
     private Integer userTar;
 
@@ -87,6 +88,10 @@ public class UserInfo {
     public void setUserCity(String userCity) {
         this.userCity = userCity;
     }
+
+    public String getUserRegion() { return userRegion; }
+
+    public void setUserRegion(String userRegion) { this.userRegion = userRegion; }
 
     public String getUserAddress() {
         return userAddress;

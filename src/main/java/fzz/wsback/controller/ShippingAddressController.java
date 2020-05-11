@@ -38,8 +38,21 @@ public class ShippingAddressController {
                                       @RequestParam(value = "consignee", required = false) String consignee,
                                       @RequestParam(value = "province", required = false) String province,
                                       @RequestParam(value = "city", required = false) String city,
+                                      @RequestParam(value = "region",required = false) String region,
                                       @RequestParam(value = "address", required = false) String address,
                                       @RequestParam(value = "postPhone", required = false) String postPhone){
-        shippingAddressService.updateShippingAddress(id, userPhone, consignee, province, city, address, postPhone);
+        shippingAddressService.updateShippingAddress(id, userPhone, consignee, province, city, region, address, postPhone);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/insertAddress", method = RequestMethod.POST)
+    public void insertAddress(@RequestParam(value = "userPhone", required = false) String userPhone,
+                              @RequestParam(value = "consignee", required = false) String consignee,
+                              @RequestParam(value = "province", required = false) String province,
+                              @RequestParam(value = "city", required = false) String city,
+                              @RequestParam(value = "region", required = false) String region,
+                              @RequestParam(value = "address", required = false) String address,
+                              @RequestParam(value = "postPhone", required = false) String postPhone){
+        shippingAddressService.insertAddress(userPhone,consignee,province,city,region,address,postPhone);
     }
 }

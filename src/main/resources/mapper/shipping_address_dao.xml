@@ -10,6 +10,7 @@
         <result column="consignee" property="consignee" jdbcType="VARCHAR"/>
         <result column="province" property="province" jdbcType="VARCHAR"/>
         <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="region" property="region" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="post_phone" property="postPhone" jdbcType="VARCHAR"/>
     </resultMap>
@@ -24,7 +25,13 @@
     <!-- 更新用户收货地址 -->
     <update id="updateShippingAddress" parameterType="fzz.wsback.domain.ShippingAddress">
         UPDATE user_shipping_address
-        SET consignee = #{consignee}, province = #{province}, city = #{city}, address = #{address}, post_phone = #{postPhone}
+        SET consignee = #{consignee}, province = #{province}, city = #{city}, region = #{region}, address = #{address}, post_phone = #{postPhone}
         WHERE user_phone = #{userPhone} AND id = #{id}
     </update>
+    <!-- 增加收货地址 -->
+    <insert id="insertAddress">
+        INSERT
+        INTO user_shipping_address (user_phone, consignee, province, city, region, address, post_phone)
+        VALUES (#{userPhone}, #{consignee}, #{province}, #{city}, #{region}, #{address}, #{postPhone})
+    </insert>
 </mapper>

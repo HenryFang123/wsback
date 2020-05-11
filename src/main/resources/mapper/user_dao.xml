@@ -23,6 +23,7 @@
         <result column="user_age" property="userAge" jdbcType="INTEGER"/>
         <result column="user_province" property="userProvince" jdbcType="VARCHAR"/>
         <result column="user_city" property="userCity" jdbcType="VARCHAR"/>
+        <result column="user_region" property="userRegion" jdbcType="VARCHAR"/>
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
         <result column="user_tar" property="userTar" jdbcType="INTEGER"/>
     </resultMap>
