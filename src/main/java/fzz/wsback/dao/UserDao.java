@@ -53,6 +53,14 @@ public interface UserDao {
     String getUserAddressByUserId(@Param("userId") Integer userId);
 
     /**
+     * 通过用户 ID 获取用户信息
+     *
+     * @param userId 用户 ID
+     * @return userInfo 实体类对象
+     */
+    UserInfo getUserInfoByUserId(@Param("userId") Integer userId);
+
+    /**
      * 注册用户并填写信息到用户信息表
      *
      * @param userId 用户 ID

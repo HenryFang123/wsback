@@ -59,6 +59,7 @@ public interface OrderDao {
      * @param bookImagePath 书籍图片路径
      * @param bookNumber 书籍数量
      * @param totalPrice 订单总价
+     * @param orderState 订单状态
      */
     void insertOrderInfo(@Param("orderId") Integer orderId,
                          @Param("userAddress") String userAddress,
@@ -69,7 +70,8 @@ public interface OrderDao {
                          @Param("bookName") String bookName,
                          @Param("bookImagePath") String bookImagePath,
                          @Param("bookNumber") Integer bookNumber,
-                         @Param("totalPrice") Double totalPrice);
+                         @Param("totalPrice") Double totalPrice,
+                         @Param("orderState") Integer orderState);
 
     /**
      * 更新订单信息

@@ -14,6 +14,7 @@
         <result column="book_image_path" property="bookImagePath" jdbcType="VARCHAR"/>
         <result column="book_number" property="bookNumber" jdbcType="INTEGER"/>
         <result column="total_price" property="totalPrice" jdbcType="DOUBLE"/>
+        <result column="order_state" property="orderState" jdbcType="INTEGER"/>
     </resultMap>
 
     <!-- 通过订单 ID 获取订单信息 -->
@@ -48,8 +49,8 @@
     <!-- 新建订单 -->
     <insert id="insertOrderInfo">
         INSERT
-        INTO order_info (order_id, user_address, user_id, user_phone, business_id, book_id, book_name, book_image_path, book_number, total_price)
-        VALUES (#{orderId}, #{userAddress}, #{userId}, #{userPhone}, #{businessId}, #{bookId}, #{bookName}, #{bookImagePath}, #{bookNumber}, #{totalPrice})
+        INTO order_info (order_id, user_address, user_id, user_phone, business_id, book_id, book_name, book_image_path, book_number, total_price, order_state)
+        VALUES (#{orderId}, #{userAddress}, #{userId}, #{userPhone}, #{businessId}, #{bookId}, #{bookName}, #{bookImagePath}, #{bookNumber}, #{totalPrice}, #{orderState})
     </insert>
 
     <!-- 更新订单信息 -->

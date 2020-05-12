@@ -1,7 +1,11 @@
 package fzz.wsback.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import fzz.wsback.dao.BookDao;
+import fzz.wsback.dao.BookTypeDao;
 import fzz.wsback.domain.BookInfo;
+import fzz.wsback.domain.BookTypeInfo;
 import fzz.wsback.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +18,12 @@ import java.util.List;
 @Service(value = "bookService")
 public class BookServiceImpl implements BookService {
     private final BookDao bookDao;
+    private final BookTypeDao bookTypeDao;
 
     @Autowired
-    public BookServiceImpl(BookDao bookDao) {
+    public BookServiceImpl(BookDao bookDao, BookTypeDao bookTypeDao) {
         this.bookDao = bookDao;
+        this.bookTypeDao = bookTypeDao;
     }
 
     @Override
@@ -33,6 +39,18 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookInfo> getBookInfoListByBusinessId(Integer businessId, Integer firstIndex, Integer pageSize) {
         return bookDao.getBookInfoListByBusinessId(businessId, firstIndex, pageSize);
+    }
+
+    @Override
+    public JSONArray getBookInfoTypeListByBusinessId(Integer businessId) {
+        JSONArray jsonArray = new JSONArray();
+        List<Integer> typeList = bookDao.getBookInfoTypeListByBusinessId(businessId);
+
+        for (Integer bookTypeId : typeList){
+            BookTypeInfo bookTypeInfo = bookTypeDao.getBookTypeInfoByBookTypeId(bookTypeId);
+            jsonArray.add(JSONObject.toJSON(bookTypeInfo));
+        }
+        return jsonArray;
     }
 
     @Override

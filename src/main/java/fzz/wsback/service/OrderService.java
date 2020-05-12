@@ -58,6 +58,7 @@ public interface OrderService {
      * @param bookImagePath 书籍图片路径
      * @param bookNumber 书籍数量
      * @param totalPrice 订单总价
+     * @param orderState 订单状态
      */
     void insertOrderInfo(Integer orderId,
                          String userAddress,
@@ -68,7 +69,8 @@ public interface OrderService {
                          String bookName,
                          String bookImagePath,
                          Integer bookNumber,
-                         Double totalPrice);
+                         Double totalPrice,
+                         Integer orderState);
 
     /**
      * 更新订单信息

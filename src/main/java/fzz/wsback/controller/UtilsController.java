@@ -67,15 +67,8 @@ public class UtilsController {
     public JSONObject getInfoById(@RequestParam(value = "bookId", required = false) Integer bookId,
                                   @RequestParam(value = "businessId", required = false) Integer businessId) {
         JSONObject jsonObject = new JSONObject();
-        BookInfo bookInfo = bookService.getBookInfoById(bookId);;
-        BusinessInfo businessInfo = businessService.getBusinessInfoByBusinessId(businessId);
-
-        if (bookInfo != null && businessInfo != null) {
-            jsonObject.put("bookInfo", JSONObject.toJSON(bookInfo));
-            jsonObject.put("businessInfo", JSONObject.toJSON(businessInfo));
-        } else {
-            jsonObject.put("resultCode", '0');
-        }
+        jsonObject.put("bookInfo", JSONObject.toJSON(bookService.getBookInfoById(bookId)));
+        jsonObject.put("businessInfo", JSONObject.toJSON(businessService.getBusinessInfoByBusinessId(businessId)));
         return jsonObject;
     }
 }

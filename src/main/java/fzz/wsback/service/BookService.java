@@ -1,5 +1,6 @@
 package fzz.wsback.service;
 
+import com.alibaba.fastjson.JSONArray;
 import fzz.wsback.domain.BookInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,14 @@ public interface BookService {
     List<BookInfo> getBookInfoListByBusinessId(Integer businessId,
                                                Integer firstIndex,
                                                Integer pageSize);
+
+    /**
+     * 通过店铺 ID 获取该店铺内类型信息列表
+     *
+     * @param businessId 店铺 ID
+     * @return JSONArray
+     */
+    JSONArray getBookInfoTypeListByBusinessId(Integer businessId);
 
     /**
      * 通过店铺 ID、类型 ID、分页起始位置、分页大小获取当前页所需数据

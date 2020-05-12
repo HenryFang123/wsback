@@ -42,6 +42,13 @@
         LIMIT #{firstIndex}, #{pageSize}
     </select>
 
+    <!-- 通过店铺 ID 获取该店铺内类型信息列表 -->
+    <select id="getBookInfoListByBusinessId" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT DISTINCT book_type_id
+        FROM book_info
+        WHERE business_id = #{businessId}
+    </select>
+
     <!-- 通过店铺 ID、类型 ID、分页起始位置、分页大小获取当前页所需数据 -->
     <select id="getBookInfoListByBusinessIdAndTypeId" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
         SELECT *

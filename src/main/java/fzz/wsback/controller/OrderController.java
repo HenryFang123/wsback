@@ -57,16 +57,17 @@ public class OrderController {
     @RequestMapping(value = "/insertOrderInfo", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public void insertOrderInfo(@RequestParam(value = "orderId", required = false) String orderId,
                                 @RequestParam(value = "userAddress", required = false) String userAddress,
-                                @RequestParam(value = "userId", required = false) String userId,
+                                @RequestParam(value = "userId", required = false) Integer userId,
                                 @RequestParam(value = "userPhone", required = false) String userPhone,
                                 @RequestParam(value = "businessId", required = false) String businessId,
                                 @RequestParam(value = "bookId", required = false) String bookId,
                                 @RequestParam(value = "bookName", required = false) String bookName,
                                 @RequestParam(value = "bookImagePath", required = false) String bookImagePath,
                                 @RequestParam(value = "bookNumber", required = false) String bookNumber,
-                                @RequestParam(value = "totalPrice", required = false) String totalPrice) {
+                                @RequestParam(value = "totalPrice", required = false) String totalPrice,
+                                @RequestParam(value = "orderState", required = false) Integer orderState) {
 
-        orderService.insertOrderInfo(Integer.valueOf(orderId), userAddress, Integer.valueOf(userId), userPhone, Integer.valueOf(businessId), Integer.valueOf(bookId), bookName, bookImagePath, Integer.valueOf(bookNumber), Double.valueOf(totalPrice));
+        orderService.insertOrderInfo(Integer.valueOf(orderId), userAddress, userId, userPhone, Integer.valueOf(businessId), Integer.valueOf(bookId), bookName, bookImagePath, Integer.valueOf(bookNumber), Double.valueOf(totalPrice), orderState);
     }
 
     @ResponseBody

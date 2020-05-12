@@ -50,8 +50,9 @@ public class OrderServiceImpl implements OrderService {
                                 String bookName,
                                 String bookImagePath,
                                 Integer bookNumber,
-                                Double totalPrice) {
-        orderDao.insertOrderInfo(orderId, userAddress, userId, userPhone, businessId, bookId, bookName, bookImagePath, bookNumber, totalPrice);
+                                Double totalPrice,
+                                Integer orderState) {
+        orderDao.insertOrderInfo(orderId, userAddress, userId, userPhone, businessId, bookId, bookName, bookImagePath, bookNumber, totalPrice, orderState);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package fzz.wsback.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import fzz.wsback.domain.User;
 import fzz.wsback.service.UserService;
@@ -33,7 +34,7 @@ public class UserController {
 
         if (user != null) {
             jsonObject.put("resultCode", '1');
-            jsonObject.put("userId", user.getUserId());
+            jsonObject.put("userInfoObject", JSONObject.toJSON(user));
         } else {
             jsonObject.put("resultCode", '0');
         }
@@ -42,19 +43,20 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/doRegister", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
-    public JSONObject doRegister(@RequestParam(value = "userId", required = false) String userIdStr,
+    public JSONObject doRegister(@RequestParam(value = "userId", required = false) Integer userId,
                                  @RequestParam(value = "userName", required = false) String userName,
                                  @RequestParam(value = "userPassWord", required = false) String userPassWord,
                                  @RequestParam(value = "userPhone", required = false) String userPhone,
-                                 @RequestParam(value = "userTar", required = false) String userTarStr) {
+                                 @RequestParam(value = "userTar", required = false) Integer userTar) {
         JSONObject jsonObject = new JSONObject();
 
-        if (userService.doRegister(Integer.valueOf(userIdStr), userName, userPassWord, userPhone, Integer.valueOf(userTarStr)) == 0) {
+        if (userService.doRegister(userId, userName, userPassWord, userPhone, userTar) == 0) {
             // 失败标志
             jsonObject.put("resultCode", '0');
         } else {
             // 成功标志
             jsonObject.put("resultCode", '1');
+            jsonObject.put("userInfoObject", JSONObject.toJSON(userService.getUserInfoByUserId(userId)));
         }
         return jsonObject;
     }
@@ -72,6 +74,12 @@ public class UserController {
     @RequestMapping(value = "/getUserInfoByUserPhone", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public JSONObject getUserInfoByUserPhone(@RequestParam(value = "userPhone", required = false) String userPhone) {
         return (JSONObject) JSONObject.toJSON(userService.getUserInfoByUserPhone(userPhone));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getUserInfoByUserId", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public JSONObject getUserInfoByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
+        return (JSONObject) JSONObject.toJSON(userService.getUserInfoByUserId(userId));
     }
 
     @ResponseBody

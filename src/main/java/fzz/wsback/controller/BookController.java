@@ -1,5 +1,6 @@
 package fzz.wsback.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import fzz.wsback.domain.BookInfo;
 import fzz.wsback.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class BookController {
                                                       @RequestParam(value = "pageSize", required = false) Integer pageSize) {
         Integer pageStart = (pageIndex - 1) * pageSize;
         return bookService.getBookInfoListByBusinessId(businessId, pageStart, pageSize);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getBookInfoTypeListByBusinessId", method = RequestMethod.POST)
+    public JSONArray getBookInfoTypeListByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId) {
+        return bookService.getBookInfoTypeListByBusinessId(businessId);
     }
 
     @ResponseBody

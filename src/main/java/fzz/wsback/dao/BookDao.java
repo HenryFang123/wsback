@@ -40,6 +40,14 @@ public interface BookDao {
                                                @Param("pageSize") Integer pageSize);
 
     /**
+     * 通过店铺 ID 获取该店铺内类型信息列表
+     *
+     * @param businessId 店铺 ID
+     * @return List Integer
+     */
+    List<Integer> getBookInfoTypeListByBusinessId(@Param("businessId") Integer businessId);
+
+    /**
      * 通过店铺 ID、类型 ID、分页起始位置、分页大小获取当前页所需数据
      *
      * @param businessId 店铺 ID

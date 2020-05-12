@@ -63,6 +63,13 @@
         WHERE user_id = #{userId}
     </select>
 
+    <!-- 通过用户 ID 获取用户信息 -->
+    <select id="getUserInfoByUserId" resultMap="UserInfoResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM user_info
+        WHERE user_id = #{userId}
+    </select>
+
     <!-- 注册用户并填写信息到用户信息表 -->
     <insert id="registerInfoTable">
         INSERT

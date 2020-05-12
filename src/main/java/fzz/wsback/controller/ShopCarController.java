@@ -34,7 +34,7 @@ public class ShopCarController {
     @ResponseBody
     @RequestMapping(value = "/insertShopCarInfo", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public void insertShopCarInfo(ShopCarInfo shopCarInfo,
-                                        Model model) {
+                                  Model model) {
         shopCarService.insertShopCarInfo(shopCarInfo);
     }
 

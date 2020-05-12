@@ -32,11 +32,10 @@ public class AdminController {
         Admin admin = adminService.checkLogin(adminId, adminPassword);
 
         if (admin != null) {
-            jsonObject.put("resultCode", '0');
-            jsonObject.put("adminName", admin.getAdminName());
-            jsonObject.put("businessId", admin.getBusinessId());
-        } else {
             jsonObject.put("resultCode", '1');
+            jsonObject.put("adminInfo", JSONObject.toJSON(admin));
+        } else {
+            jsonObject.put("resultCode", '0');
         }
         return jsonObject;
     }

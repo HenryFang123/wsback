@@ -2,6 +2,7 @@ package fzz.wsback.service;
 
 import fzz.wsback.domain.User;
 import fzz.wsback.domain.UserInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -60,6 +61,14 @@ public interface UserService {
      * @return userAddress 用户收货地址
      */
     String getUserAddressByUserId(Integer userId);
+
+    /**
+     * 通过用户 ID 获取用户信息
+     *
+     * @param userId 用户 ID
+     * @return userInfo 实体类对象
+     */
+    UserInfo getUserInfoByUserId(Integer userId);
 
     /**
      * 更新用户信息

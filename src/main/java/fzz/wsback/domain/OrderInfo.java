@@ -14,6 +14,7 @@ public class OrderInfo {
     private String bookImagePath;
     private Integer bookNumber;
     private Double totalPrice;
+    private Integer orderState;
 
     public Integer getOrderId() {
         return orderId;
@@ -93,5 +94,13 @@ public class OrderInfo {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Integer getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(Integer orderState) {
+        this.orderState = orderState;
     }
 }
