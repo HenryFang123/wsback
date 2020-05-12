@@ -10,6 +10,14 @@ import org.springframework.stereotype.Repository;
 @Repository(value = "shopCarService")
 public interface ShopCarService {
     /**
+     * 通过用户ID获取用户购物车物品数量
+     *
+     * @param userId 用户Id
+     * @return Long 购物车项数
+     */
+    Long getShopCarInfoCountByUserId(Integer userId);
+
+    /**
      * 通过用户 ID 获取该用户所有购物车信息
      *
      * @param userId 用户 ID

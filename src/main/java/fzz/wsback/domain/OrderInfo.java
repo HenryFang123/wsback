@@ -4,7 +4,8 @@ package fzz.wsback.domain;
  * @author NE
  */
 public class OrderInfo {
-    private Integer orderId;
+    private String orderId;
+    private Integer orderState;
     private String userAddress;
     private Integer userId;
     private String userPhone;
@@ -14,13 +15,12 @@ public class OrderInfo {
     private String bookImagePath;
     private Integer bookNumber;
     private Double totalPrice;
-    private Integer orderState;
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 

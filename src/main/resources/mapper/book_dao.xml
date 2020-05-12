@@ -43,7 +43,7 @@
     </select>
 
     <!-- 通过店铺 ID 获取该店铺内类型信息列表 -->
-    <select id="getBookInfoListByBusinessId" resultType="java.lang.String" parameterType="java.lang.Integer">
+    <select id="getBookInfoTypeListByBusinessId" resultType="java.lang.String" parameterType="java.lang.Integer">
         SELECT DISTINCT book_type_id
         FROM book_info
         WHERE business_id = #{businessId}

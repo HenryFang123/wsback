@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderInfo> getOrderInfoByOrderId(Integer orderId) {
+    public List<OrderInfo> getOrderInfoByOrderId(String orderId) {
         return orderDao.getOrderInfoByOrderId(orderId);
     }
 
@@ -41,7 +41,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void insertOrderInfo(Integer orderId,
+    public Long getOrderInfoCountByUserId(Integer userId) {
+        return orderDao.getOrderInfoCountByUserId(userId);
+    }
+
+    @Override
+    public void insertOrderInfo(String orderId,
                                 String userAddress,
                                 Integer userId,
                                 String userPhone,
@@ -50,18 +55,17 @@ public class OrderServiceImpl implements OrderService {
                                 String bookName,
                                 String bookImagePath,
                                 Integer bookNumber,
-                                Double totalPrice,
-                                Integer orderState) {
-        orderDao.insertOrderInfo(orderId, userAddress, userId, userPhone, businessId, bookId, bookName, bookImagePath, bookNumber, totalPrice, orderState);
+                                Double totalPrice) {
+        orderDao.insertOrderInfo(orderId, userAddress, userId, userPhone, businessId, bookId, bookName, bookImagePath, bookNumber, totalPrice);
     }
 
     @Override
-    public void updateOrderInfo(Integer orderId, String userAddress, String userPhone) {
+    public void updateOrderInfo(String orderId, String userAddress, String userPhone) {
         orderDao.updateOrderInfo(orderId, userAddress, userPhone);
     }
 
     @Override
-    public void deleteOrderInfoByOrderId(Integer orderId) {
+    public void deleteOrderInfoByOrderId(String orderId) {
         orderDao.deleteOrderInfoByOrderId(orderId);
     }
 }

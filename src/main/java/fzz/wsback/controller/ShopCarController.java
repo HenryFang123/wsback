@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import fzz.wsback.domain.ShopCarInfo;
 import fzz.wsback.service.ShopCarService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,12 @@ public class ShopCarController {
     @Autowired
     public ShopCarController(ShopCarService shopCarService) {
         this.shopCarService = shopCarService;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getShopCarInfoCountByUserId", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public Long getShopCarInfoCountByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
+        return shopCarService.getShopCarInfoCountByUserId(userId);
     }
 
     @ResponseBody

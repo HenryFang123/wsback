@@ -4,7 +4,8 @@
 <mapper namespace="fzz.wsback.dao.OrderDao">
     <resultMap type="fzz.wsback.domain.OrderInfo"
                id="OrderResultMap">
-        <id column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <id column="order_id" property="orderId" jdbcType="VARCHAR"/>
+        <result column="order_state" property="orderState" jdbcType="INTEGER"/>
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
@@ -14,7 +15,6 @@
         <result column="book_image_path" property="bookImagePath" jdbcType="VARCHAR"/>
         <result column="book_number" property="bookNumber" jdbcType="INTEGER"/>
         <result column="total_price" property="totalPrice" jdbcType="DOUBLE"/>
-        <result column="order_state" property="orderState" jdbcType="INTEGER"/>
     </resultMap>
 
     <!-- 通过订单 ID 获取订单信息 -->
@@ -28,7 +28,7 @@
     <select id="getOrderInfoListByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
         SELECT *
         FROM order_info
-        WHERE user_id = #{userId}
+        WHERE user_id = #{userId} and order_state = 1
     </select>
 
     <!-- 通过店铺 ID 获取店铺订单信息 -->
@@ -46,11 +46,18 @@
         WHERE business_id = #{businessId}
     </select>
 
+    <!-- 通过用户 ID 获取当前用户订单量 -->
+    <select id="getOrderInfoCountByUserId" resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM order_info
+        WHERE user_id = #{userId}
+    </select>
+
     <!-- 新建订单 -->
     <insert id="insertOrderInfo">
         INSERT
-        INTO order_info (order_id, user_address, user_id, user_phone, business_id, book_id, book_name, book_image_path, book_number, total_price, order_state)
-        VALUES (#{orderId}, #{userAddress}, #{userId}, #{userPhone}, #{businessId}, #{bookId}, #{bookName}, #{bookImagePath}, #{bookNumber}, #{totalPrice}, #{orderState})
+        INTO order_info (order_id, order_state,user_address, user_id, user_phone, business_id, book_id, book_name, book_image_path, book_number, total_price)
+        VALUES (#{orderId}, 1,#{userAddress}, #{userId}, #{userPhone}, #{businessId}, #{bookId}, #{bookName}, #{bookImagePath}, #{bookNumber}, #{totalPrice})
     </insert>
 
     <!-- 更新订单信息 -->
@@ -61,9 +68,9 @@
     </update>
 
     <!-- 通过订单 ID 删除订单 -->
-    <delete id="deleteOrderInfoByOrderId" parameterType="fzz.wsback.domain.OrderInfo">
-        DELETE
-        FROM order_info
+    <update id="deleteOrderInfoByOrderId" parameterType="fzz.wsback.domain.OrderInfo">
+        UPDATE order_info
+        SET order_state = 0
         WHERE order_id = #{orderId}
-    </delete>
+    </update>
 </mapper>

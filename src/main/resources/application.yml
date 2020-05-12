@@ -15,7 +15,7 @@ spring:
       password: Aws_20200403
       initial-size: 1
       min-idle: 1
-      max-active: 20
+      max-active: 100
       max-wait: 60000
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000

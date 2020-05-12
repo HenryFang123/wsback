@@ -17,7 +17,7 @@ public interface OrderDao {
      * @param orderId 订单 ID
      * @return List OrderInfo 实体类对象列表
      */
-    List<OrderInfo> getOrderInfoByOrderId(@Param("orderId") Integer orderId);
+    List<OrderInfo> getOrderInfoByOrderId(@Param("orderId") String orderId);
 
     /**
      * 通过用户 ID 获取用户所有订单信息
@@ -28,7 +28,7 @@ public interface OrderDao {
 
     /**
      * 通过店铺 ID 获取店铺订单信息
-     * 
+     *
      * @param businessId 店铺 ID
      * @param firstIndex 分页起始位置
      * @param pageSize 分页大小
@@ -47,6 +47,14 @@ public interface OrderDao {
     Long getOrderInfoCountByBusinessId(@Param("businessId") Integer businessId);
 
     /**
+     * 通过用户 ID 获取当前用户有效总订单量
+     *
+     * @param userId 店铺 ID
+     * @return Long 订单总数
+     */
+    Long getOrderInfoCountByUserId(@Param("userId") Integer userId);
+
+    /**
      * 新建订单
      *
      * @param orderId 订单 ID
@@ -59,9 +67,8 @@ public interface OrderDao {
      * @param bookImagePath 书籍图片路径
      * @param bookNumber 书籍数量
      * @param totalPrice 订单总价
-     * @param orderState 订单状态
      */
-    void insertOrderInfo(@Param("orderId") Integer orderId,
+    void insertOrderInfo(@Param("orderId") String orderId,
                          @Param("userAddress") String userAddress,
                          @Param("userId") Integer userId,
                          @Param("userPhone") String userPhone,
@@ -70,8 +77,7 @@ public interface OrderDao {
                          @Param("bookName") String bookName,
                          @Param("bookImagePath") String bookImagePath,
                          @Param("bookNumber") Integer bookNumber,
-                         @Param("totalPrice") Double totalPrice,
-                         @Param("orderState") Integer orderState);
+                         @Param("totalPrice") Double totalPrice);
 
     /**
      * 更新订单信息
@@ -80,7 +86,7 @@ public interface OrderDao {
      * @param userAddress 用户收货地址
      * @param userPhone 用户手机号
      */
-    void updateOrderInfo(@Param("orderId") Integer orderId,
+    void updateOrderInfo(@Param("orderId") String orderId,
                          @Param("userAddress") String userAddress,
                          @Param("userPhone") String userPhone);
 
@@ -89,5 +95,5 @@ public interface OrderDao {
      *
      * @param orderId 订单 ID
      */
-    void deleteOrderInfoByOrderId(@Param("orderId") Integer orderId);
+    void deleteOrderInfoByOrderId(@Param("orderId") String orderId);
 }

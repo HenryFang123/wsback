@@ -16,7 +16,7 @@ public interface OrderService {
      * @param orderId 订单 ID
      * @return List OrderInfo 实体类对象列表
      */
-    List<OrderInfo> getOrderInfoByOrderId(Integer orderId);
+    List<OrderInfo> getOrderInfoByOrderId(String orderId);
 
     /**
      * 通过用户 ID 获取用户所有订单信息
@@ -46,6 +46,14 @@ public interface OrderService {
     Long getOrderInfoCountByBusinessId(Integer businessId);
 
     /**
+     * 通过用户 ID 获取当前用户有效总订单量
+     *
+     * @param userId 店铺 ID
+     * @return Long 订单总数
+     */
+    Long getOrderInfoCountByUserId(Integer userId);
+
+    /**
      * 新建订单
      *
      * @param orderId 订单 ID
@@ -58,9 +66,8 @@ public interface OrderService {
      * @param bookImagePath 书籍图片路径
      * @param bookNumber 书籍数量
      * @param totalPrice 订单总价
-     * @param orderState 订单状态
      */
-    void insertOrderInfo(Integer orderId,
+    void insertOrderInfo(String orderId,
                          String userAddress,
                          Integer userId,
                          String userPhone,
@@ -69,8 +76,7 @@ public interface OrderService {
                          String bookName,
                          String bookImagePath,
                          Integer bookNumber,
-                         Double totalPrice,
-                         Integer orderState);
+                         Double totalPrice);
 
     /**
      * 更新订单信息
@@ -79,7 +85,7 @@ public interface OrderService {
      * @param userAddress 用户收货地址
      * @param userPhone 用户手机号
      */
-    void updateOrderInfo(Integer orderId,
+    void updateOrderInfo(String orderId,
                          String userAddress,
                          String userPhone);
 
@@ -88,6 +94,6 @@ public interface OrderService {
      *
      * @param orderId 订单 ID
      */
-    void deleteOrderInfoByOrderId(Integer orderId);
+    void deleteOrderInfoByOrderId(String orderId);
 
 }

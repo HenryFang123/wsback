@@ -13,7 +13,7 @@ import java.util.List;
 @Repository(value = "ShopCarDao")
 public interface ShopCarDao {
     /**
-     * 通过用户 ID 获取该用户所有购物车信息
+     * 通过用户 ID获取购物车信息
      *
      * @param userId 用户 ID
      * @return List ShopCarInfo 实体类对象列表
@@ -57,4 +57,13 @@ public interface ShopCarDao {
      * @param shopCarId 购物车 ID
      */
     void deleteShopCarInfoByShopCarId(@Param("shopCarId") Integer shopCarId);
+
+    /**
+     * 通过用户ID获取用户购物车物品数量
+     *
+     * @param userId
+     * @return Long 购物车项数
+     */
+    Long getShopCarInfoCountByUserId(@Param("userId") Integer userId);
+
 }
