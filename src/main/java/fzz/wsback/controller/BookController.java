@@ -41,13 +41,13 @@ public class BookController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getBookInfoTypeListByBusinessId", method = RequestMethod.POST)
+    @RequestMapping(value = "/getBookInfoTypeListByBusinessId", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     public JSONArray getBookInfoTypeListByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId) {
         return bookService.getBookInfoTypeListByBusinessId(businessId);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getBookInfoListByBusinessIdAndTypeId", method = RequestMethod.POST)
+    @RequestMapping(value = "/getBookInfoListByBusinessIdAndTypeId", produces = {"application/json;charset=UTF-8"},  method = RequestMethod.POST)
     public List<BookInfo> getBookInfoListByBusinessIdAndTypeId(@RequestParam(value = "businessId", required = false) Integer businessId,
                                                                @RequestParam(value = "typeId", required = false) Integer typeId,
                                                                @RequestParam(value = "pageNum", required = false) Integer pageNum,
