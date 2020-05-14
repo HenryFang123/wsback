@@ -55,4 +55,11 @@ public class ShippingAddressController {
                               @RequestParam(value = "postPhone", required = false) String postPhone){
         shippingAddressService.insertAddress(userPhone,consignee,province,city,region,address,postPhone);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteShippingAddress", method = RequestMethod.POST)
+    public void deleteShippingAddress(@RequestParam(value = "id", required = false) Integer id,
+                                      @RequestParam(value = "userPhone", required = false) String userPhone){
+        shippingAddressService.deleteShippingAddress(id, userPhone);
+    }
 }

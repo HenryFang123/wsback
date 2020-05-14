@@ -55,4 +55,13 @@ public interface ShippingAddressService {
                        String region,
                        String address,
                        String postPhone);
+
+    /**
+     * 删除用户收货地址
+     *
+     * @param id        收货地址 ID
+     * @param userPhone 用户手机号
+     */
+    void deleteShippingAddress(Integer id,
+                               String userPhone);
 }

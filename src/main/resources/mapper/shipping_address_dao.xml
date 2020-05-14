@@ -34,4 +34,10 @@
         INTO user_shipping_address (user_phone, consignee, province, city, region, address, post_phone)
         VALUES (#{userPhone}, #{consignee}, #{province}, #{city}, #{region}, #{address}, #{postPhone})
     </insert>
+    <!-- 删除收货地址 -->
+    <delete id="deleteShippingAddress" parameterType="fzz.wsback.domain.ShippingAddress">
+        DELETE
+        FROM user_shipping_address
+        WHERE user_phone=  #{userPhone} AND id = #{id}
+    </delete>
 </mapper>

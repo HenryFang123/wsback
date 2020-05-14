@@ -34,4 +34,9 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     public void insertAddress(String userPhone, String consignee, String province, String city, String region, String address, String postPhone) {
         shippingAddressDao.insertAddress(userPhone,consignee,province,city,region,address,postPhone);
     }
+
+    @Override
+    public void deleteShippingAddress(Integer id, String userPhone) {
+        shippingAddressDao.deleteShippingAddress(id,userPhone);
+    }
 }
