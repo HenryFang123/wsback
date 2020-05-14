@@ -46,12 +46,6 @@
         WHERE business_id = #{businessId}
     </select>
 
-    <!-- 通过用户 ID 获取当前用户订单量 -->
-    <select id="getOrderInfoCountByUserId" resultType="java.lang.Long" parameterType="java.lang.Integer">
-        SELECT count(*)
-        FROM order_info
-        WHERE user_id = #{userId}
-    </select>
 
     <!-- 新建订单 -->
     <insert id="insertOrderInfo">

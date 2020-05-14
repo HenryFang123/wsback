@@ -46,13 +46,6 @@ public interface OrderDao {
      */
     Long getOrderInfoCountByBusinessId(@Param("businessId") Integer businessId);
 
-    /**
-     * 通过用户 ID 获取当前用户有效总订单量
-     *
-     * @param userId 店铺 ID
-     * @return Long 订单总数
-     */
-    Long getOrderInfoCountByUserId(@Param("userId") Integer userId);
 
     /**
      * 新建订单

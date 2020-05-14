@@ -53,12 +53,6 @@ public class OrderController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getOrderInfoCountByUserId", method = RequestMethod.POST)
-    public Long getOrderInfoCountByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
-        return orderService.getOrderInfoCountByUserId(userId);
-    }
-
-    @ResponseBody
     @RequestMapping(value = "/insertOrderInfo", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public void insertOrderInfo(@RequestParam(value = "orderId", required = false) String orderId,
                                 @RequestParam(value = "userAddress", required = false) String userAddress,

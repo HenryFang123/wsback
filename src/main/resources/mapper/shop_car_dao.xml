@@ -48,10 +48,4 @@
         WHERE shop_car_id =  #{shopCarId}
     </delete>
 
-    <!-- 通过用户Id获取购物车项数 -->
-    <select id="getShopCarInfoCountByUserId"  resultType="java.lang.Long" parameterType="java.lang.Integer">
-        SELECT count(*)
-        FROM shop_car_info
-        WHERE user_id = #{userId}
-    </select>
 </mapper>

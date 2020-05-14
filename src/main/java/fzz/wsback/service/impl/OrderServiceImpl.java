@@ -41,11 +41,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Long getOrderInfoCountByUserId(Integer userId) {
-        return orderDao.getOrderInfoCountByUserId(userId);
-    }
-
-    @Override
     public void insertOrderInfo(String orderId,
                                 String userAddress,
                                 Integer userId,

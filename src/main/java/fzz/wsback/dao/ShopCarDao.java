@@ -58,12 +58,4 @@ public interface ShopCarDao {
      */
     void deleteShopCarInfoByShopCarId(@Param("shopCarId") Integer shopCarId);
 
-    /**
-     * 通过用户ID获取用户购物车物品数量
-     *
-     * @param userId
-     * @return Long 购物车项数
-     */
-    Long getShopCarInfoCountByUserId(@Param("userId") Integer userId);
-
 }

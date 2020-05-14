@@ -27,12 +27,6 @@ public class ShopCarController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getShopCarInfoCountByUserId", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
-    public Long getShopCarInfoCountByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
-        return shopCarService.getShopCarInfoCountByUserId(userId);
-    }
-
-    @ResponseBody
     @RequestMapping(value = "/getShopCarListInfoByUserId", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public JSONArray getShopCarListInfoByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
         return shopCarService.getShopCarListInfoByUserId(userId);

@@ -27,11 +27,6 @@ public class ShopCarServiceImpl implements ShopCarService {
     }
 
     @Override
-    public Long getShopCarInfoCountByUserId(Integer userId){
-        return shopCarDao.getShopCarInfoCountByUserId(userId);
-    }
-
-    @Override
     public JSONArray getShopCarListInfoByUserId(Integer userId) {
         List<ShopCarInfo> shopCarInfos = shopCarDao.getShopCarInfoListByUserId(userId);
         BookInfo bookInfo = new BookInfo();
