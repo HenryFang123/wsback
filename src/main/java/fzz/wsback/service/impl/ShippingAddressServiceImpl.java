@@ -1,5 +1,7 @@
 package fzz.wsback.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import fzz.wsback.dao.ShippingAddressDao;
 import fzz.wsback.domain.ShippingAddress;
 import fzz.wsback.service.ShippingAddressService;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * @author ZJH
@@ -21,8 +24,29 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     }
 
     @Override
-    public List<ShippingAddress> getShippingAddressByUserPhone(String userPhone) {
-        return shippingAddressDao.getShippingAddressByUserPhone(userPhone);
+    public List<ShippingAddress> getShippingAddressListByUserPhone(String userPhone) {
+        return shippingAddressDao.getShippingAddressListByUserPhone(userPhone);
+    }
+
+    @Override
+    public JSONArray getShippingAddressListByUserPhoneAndHandle(String userPhone) {
+        JSONArray jsonArray = new JSONArray();
+        List<ShippingAddress> shippingAddressList = shippingAddressDao.getShippingAddressListByUserPhone(userPhone);
+
+        for (ShippingAddress shippingAddress : shippingAddressList){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("ifDefaultAddress", shippingAddress.getDefaultAddress());
+            jsonObject.put("id", shippingAddress.getId());
+            jsonObject.put("detail", shippingAddress.getConsignee()
+                    + ' ' + shippingAddress.getUserPhone()
+                    + ' ' + shippingAddress.getProvince()
+                    + '-' + shippingAddress.getCity()
+                    + '-' + shippingAddress.getRegion()
+                    + ' ' + shippingAddress.getAddress());
+
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
     }
 
     @Override

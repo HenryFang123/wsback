@@ -1,5 +1,6 @@
 package fzz.wsback.service;
 
+import com.alibaba.fastjson.JSONArray;
 import fzz.wsback.domain.ShippingAddress;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +17,15 @@ public interface ShippingAddressService {
      * @param userPhone 用户手机号
      * @return List ShippingAddress 实体类对象列表
      */
-    List<ShippingAddress> getShippingAddressByUserPhone(String userPhone);
+    List<ShippingAddress> getShippingAddressListByUserPhone(String userPhone);
+
+    /**
+     * 通过用户手机号获取用户收货地址并处理
+     *
+     * @param userPhone 用户手机号
+     * @return List ShippingAddress 实体类对象列表
+     */
+    JSONArray getShippingAddressListByUserPhoneAndHandle(String userPhone);
 
     /**
      * 更新用户收货地址

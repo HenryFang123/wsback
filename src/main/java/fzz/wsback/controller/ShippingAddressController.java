@@ -1,5 +1,6 @@
 package fzz.wsback.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import fzz.wsback.domain.ShippingAddress;
 import fzz.wsback.service.ShippingAddressService;
 
@@ -26,9 +27,15 @@ public class ShippingAddressController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/getShippingAddressByUserPhone", method = RequestMethod.POST)
-    public List<ShippingAddress> getShippingAddressByUserPhone(@RequestParam(value = "userPhone", required = false) String userPhone){
-        return shippingAddressService.getShippingAddressByUserPhone(userPhone);
+    @RequestMapping(value = "/getShippingAddressListByUserPhone", method = RequestMethod.POST)
+    public List<ShippingAddress> getShippingAddressListByUserPhone(@RequestParam(value = "userPhone", required = false) String userPhone){
+        return shippingAddressService.getShippingAddressListByUserPhone(userPhone);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getShippingAddressListByUserPhoneAndHandle", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public JSONArray getShippingAddressListByUserPhoneAndHandle(@RequestParam(value = "userPhone", required = false) String userPhone){
+        return shippingAddressService.getShippingAddressListByUserPhoneAndHandle(userPhone);
     }
 
     @ResponseBody

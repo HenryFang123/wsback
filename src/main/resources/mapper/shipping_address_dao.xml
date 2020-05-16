@@ -17,7 +17,7 @@
     </resultMap>
 
     <!-- 通过用户手机号获取用户收货地址 -->
-    <select id="getShippingAddressByUserPhone" resultMap="ShippingAddressResultMap" parameterType="java.lang.String">
+    <select id="getShippingAddressListByUserPhone" resultMap="ShippingAddressResultMap" parameterType="java.lang.String">
         SELECT *
         FROM user_shipping_address
         WHERE user_phone = #{userPhone}

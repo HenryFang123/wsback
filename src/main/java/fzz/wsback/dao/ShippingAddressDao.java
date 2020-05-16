@@ -17,7 +17,7 @@ public interface ShippingAddressDao {
      * @param userPhone 用户手机号
      * @return List ShippingAddress 实体类对象列表
      */
-    List<ShippingAddress> getShippingAddressByUserPhone(@Param("userPhone") String userPhone);
+    List<ShippingAddress> getShippingAddressListByUserPhone(@Param("userPhone") String userPhone);
 
     /**
      * 更新用户收货地址
@@ -27,6 +27,7 @@ public interface ShippingAddressDao {
      * @param consignee 收货人
      * @param province 生粉
      * @param city 城市
+     * @param region 区域
      * @param address 详细地址
      * @param postPhone 收货人手机号
      */
