@@ -62,4 +62,12 @@ public class ShippingAddressController {
                                       @RequestParam(value = "userPhone", required = false) String userPhone){
         shippingAddressService.deleteShippingAddress(id, userPhone);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/setDefaultAddress" , method = RequestMethod.POST)
+    public void setDefaultAddress(@RequestParam(value = "userPhone",required = false)String userPhone,
+                                  @RequestParam(value = "id",required = false) Integer id){
+        System.out.println("手机号"+userPhone+"id"+id);
+        shippingAddressService.setDefaultAddress(userPhone,id);
+    }
 }

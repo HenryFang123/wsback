@@ -12,6 +12,7 @@ public class ShippingAddress {
     private String region;
     private String address;
     private String postPhone;
+    private Integer defaultAddress;
 
     public Integer getId() {
         return id;
@@ -72,4 +73,8 @@ public class ShippingAddress {
     public void setPostPhone(String postPhone) {
         this.postPhone = postPhone;
     }
+
+    public Integer getDefaultAddress() { return defaultAddress; }
+
+    public void setDefaultAddress(Integer defaultAddress) { this.defaultAddress = defaultAddress; }
 }

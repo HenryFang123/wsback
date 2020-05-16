@@ -66,4 +66,12 @@ public interface ShippingAddressDao {
      */
     void deleteShippingAddress(@Param("id") Integer id,
                                @Param("userPhone") String userPhone);
+    /**
+     * 设置默认收货地址
+     *
+     * @param id        收货地址 ID
+     * @param userPhone 用户手机号
+     */
+    void setDefaultAddress(@Param("userPhone") String userPhone,
+                           @Param("id") Integer id);
 }

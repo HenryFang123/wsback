@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import fzz.wsback.domain.User;
 import fzz.wsback.service.UserService;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,7 +92,8 @@ public class UserController {
                                @RequestParam(value = "userAge", required = false) Integer userAge,
                                @RequestParam(value = "userProvince", required = false) String userProvince,
                                @RequestParam(value = "userCity", required = false) String userCity,
+                               @RequestParam(value = "userRegion",required = false)String userRegion,
                                @RequestParam(value = "userAddress", required = false) String userAddress) {
-        userService.updateUserInfo(userPhone, userName, userEmail, userSex, userAge, userProvince, userCity, userAddress);
+        userService.updateUserInfo(userPhone, userName, userEmail, userSex, userAge, userProvince, userCity,userRegion, userAddress);
     }
 }

@@ -98,6 +98,7 @@ public interface UserDao {
      * @param userAge 用户年龄
      * @param userProvince 用户省份
      * @param userCity 用户城市居住地
+     * @param userRegion 用户所在区
      * @param userAddress 用户收货地址
      */
     void updateUserInfo(@Param("userPhone") String userPhone,
@@ -107,5 +108,6 @@ public interface UserDao {
                         @Param("userAge") Integer userAge,
                         @Param("userProvince") String userProvince,
                         @Param("userCity") String userCity,
+                        @Param("userRegion") String userRegion,
                         @Param("userAddress") String userAddress);
 }

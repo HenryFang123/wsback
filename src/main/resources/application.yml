@@ -10,7 +10,7 @@ spring:
     druid:
       filters: stat
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://121.36.70.19:3306/ws_book?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      url: jdbc:mysql://121.36.70.19:3306/ws_book?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       username: admin_ws
       password: Aws_20200403
       initial-size: 1

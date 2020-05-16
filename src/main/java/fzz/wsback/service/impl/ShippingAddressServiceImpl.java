@@ -39,4 +39,9 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     public void deleteShippingAddress(Integer id, String userPhone) {
         shippingAddressDao.deleteShippingAddress(id,userPhone);
     }
+
+    @Override
+    public void setDefaultAddress(String userPhone, Integer id) {
+        shippingAddressDao.setDefaultAddress(userPhone,id);
+    }
 }

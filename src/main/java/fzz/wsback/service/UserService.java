@@ -80,6 +80,7 @@ public interface UserService {
      * @param userAge 用户年龄
      * @param userProvince 用户省份
      * @param userCity 用户城市居住地
+     * @param userRegion 用户所在区
      * @param userAddress 用户收货地址
      */
     void updateUserInfo(String userPhone,
@@ -89,5 +90,6 @@ public interface UserService {
                         Integer userAge,
                         String userProvince,
                         String userCity,
+                        String userRegion,
                         String userAddress);
 }

@@ -13,6 +13,7 @@
         <result column="region" property="region" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="post_phone" property="postPhone" jdbcType="VARCHAR"/>
+        <result column="default_address" property="defaultAddress" jdbcType="INTEGER"/>
     </resultMap>
 
     <!-- 通过用户手机号获取用户收货地址 -->
@@ -40,4 +41,11 @@
         FROM user_shipping_address
         WHERE user_phone=  #{userPhone} AND id = #{id}
     </delete>
+    <!-- 设置默认收货地址-->
+    <update id="setDefaultAddress" parameterType="fzz.wsback.domain.ShippingAddress">
+        update user_shipping_address
+        set default_address=1 where user_phone=#{userPhone} and id=#{id};
+        update user_shipping_address
+        set default_address=0 where user_phone=#{userPhone} and id!=#{id}
+    </update>
 </mapper>

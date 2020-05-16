@@ -64,4 +64,12 @@ public interface ShippingAddressService {
      */
     void deleteShippingAddress(Integer id,
                                String userPhone);
+    /**
+     * 设置默认收货地址
+     *
+     * @param id        收货地址 ID
+     * @param userPhone 用户手机号
+     */
+    void setDefaultAddress(String userPhone,
+                           Integer id);
 }
