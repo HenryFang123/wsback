@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="fzz.wsback.dao.UserStarDao">
+
+    <resultMap type="fzz.wsback.domain.UserStar"
+               id="UserStarResultMap">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_star_id" property="userStarId" jdbcType="INTEGER"/>
+        <result column="user_star_tag" property="userStarTag" jdbcType="INTEGER"/>
+        <result column="user_star_status" property="userStarStatus" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- 通过用户 ID 获取用户收藏图书信息（此处 user_tag 应为 0） -->
+    <select id="getBookUserStarByUserId" resultMap="UserStarResultMap" parameterType="fzz.wsback.domain.UserStar">
+        SELECT *
+        FROM user_star
+        WHERE user_id = #{userId} AND user_star_tag = 0 AND user_star_status = 1
+    </select>
+
+    <!-- 通过用户 ID 获取用户收藏店铺信息（此处 user_tag 应为 1） -->
+    <select id="getBusinessUserStarByUserId" resultMap="UserStarResultMap" parameterType="fzz.wsback.domain.UserStar">
+        SELECT *
+        FROM user_star
+        WHERE user_id = #{userId} AND user_star_tag = 1 AND user_star_status = 1
+    </select>
+
+    <!-- 通过用户 ID 和 收藏项 ID 获取用户收藏信息 -->
+    <select id="getUserStarByUserIdAndUserStarId" resultMap="UserStarResultMap" parameterType="fzz.wsback.domain.UserStar">
+        SELECT *
+        FROM user_star
+        WHERE user_id = #{userId} AND user_star_id = #{userStarId}
+    </select>
+
+    <!-- 用户添加收藏（userTag 为 0 表示收藏图书，为 1 表示收藏店铺） -->
+    <insert id="insertUserStar">
+        INSERT
+        INTO user_star (user_id, user_star_id, user_star_tag)
+        VALUES (#{userId}, #{userStarId}, #{userStarTag})
+    </insert>
+
+    <!-- 修改用户收藏项状态 -->
+    <update id="updateUserStar" parameterType="fzz.wsback.domain.UserStar">
+        UPDATE user_star
+        SET user_star_status = 0
+        WHERE user_id = #{userId} AND user_star_id = #{userStarId}
+    </update>
+</mapper>
