@@ -28,14 +28,14 @@
     <select id="getOrderInfoListByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
         SELECT *
         FROM order_info
-        WHERE user_id = #{userId} and order_state = 1
+        WHERE user_id = #{userId} AND order_state = 1
     </select>
 
     <!-- 通过店铺 ID 获取店铺订单信息 -->
     <select id="getOrderInfoListByBusinessId" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
         SELECT *
         FROM order_info
-        WHERE business_id = #{businessId}
+        WHERE business_id = #{businessId} AND order_state = 1
         LIMIT #{firstIndex}, #{pageSize}
     </select>
 
@@ -43,7 +43,7 @@
     <select id="getOrderInfoCountByBusinessId" resultType="java.lang.Long" parameterType="java.lang.Integer">
         SELECT count(*)
         FROM order_info
-        WHERE business_id = #{businessId}
+        WHERE business_id = #{businessId} AND order_state = 1
     </select>
 
 

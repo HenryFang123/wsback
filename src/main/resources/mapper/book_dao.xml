@@ -38,7 +38,7 @@
     <select id="getBookInfoListByBusinessId" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
         SELECT *
         FROM book_info
-        WHERE business_id = #{businessId}
+        WHERE business_id = #{businessId} and book_status = 1
         LIMIT #{firstIndex}, #{pageSize}
     </select>
 
@@ -61,7 +61,7 @@
     <select id="getBookInfoCountByBusinessId"  resultType="java.lang.Long" parameterType="java.lang.Integer">
         SELECT count(*)
         FROM book_info
-        WHERE business_id = #{businessId}
+        WHERE business_id = #{businessId} AND book_status = 1
     </select>
 
     <!-- 通过店铺 ID 和 类型 ID 获取当前分类下的总书籍个数 -->
@@ -85,10 +85,10 @@
         WHERE business_id = #{businessId} AND book_name = #{bookName};
     </update>
 
-    <!-- 通过书籍 ID 删除该条书籍 -->
+    <!-- 通过书籍 ID 删除该条书籍，改变状态为0 -->
     <delete id="deleteBookInfoByBookId" parameterType="fzz.wsback.domain.BookInfo">
-        DELETE
-        FROM book_info
+        UPDATE book_info
+        SET book_status = 0
         WHERE book_id = #{bookId}
     </delete>
 
