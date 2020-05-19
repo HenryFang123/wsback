@@ -38,6 +38,24 @@ public class OrderController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/getNotDeliverOrderInfoByUserId", method = RequestMethod.POST)
+    public List<OrderInfo> getNotDeliverOrderInfoByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
+        return orderService.getNotDeliverOrderInfoByUserId(userId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getNotSignOrderInfoByUserId", method = RequestMethod.POST)
+    public List<OrderInfo> getNotSignOrderInfoByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
+        return orderService.getNotSignOrderInfoByUserId(userId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getDoneOrderInfoByUserId", method = RequestMethod.POST)
+    public List<OrderInfo> getDoneOrderInfoByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
+        return orderService.getDoneOrderInfoByUserId(userId);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/getOrderInfoListByBusinessId", method = RequestMethod.POST)
     public List<OrderInfo> getOrderInfoListByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId,
                                                         @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
@@ -78,7 +96,28 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(value = "/deleteOrderInfoByOrderId", method = RequestMethod.POST)
-    public void deleteOrderInfoByOrderId(@RequestParam(value = "orderId", required = false) String orderId) {
-        orderService.deleteOrderInfoByOrderId(orderId);
+    public void deleteOrderInfoByOrderId(@RequestParam(value = "orderId", required = false) String orderId,
+                                         @RequestParam(value = "orderInfo", required = false) String orderInfo) {
+        orderService.deleteOrderInfoByOrderId(orderId,orderInfo);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateUserAddressByOrderId", method = RequestMethod.POST)
+    public void updateUserAddressByOrderId(@RequestParam(value = "orderId", required = false) String orderId,
+                                           @RequestParam(value = "userAddress", required = false) String userAddress){
+        orderService.updateUserAddressByOrderId(orderId,userAddress);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/payOrderInfoByOrderId", method = RequestMethod.POST)
+    public void payOrderInfoByOrderId(@RequestParam(value = "orderId", required = false) String orderId){
+        orderService.payOrderInfoByOrderId(orderId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/checkOrderInfoByOrderId", method = RequestMethod.POST)
+    public void checkOrderInfoByOrderId(@RequestParam(value = "orderId", required = false) String orderId){
+        orderService.checkOrderInfoByOrderId(orderId);
     }
 }
+

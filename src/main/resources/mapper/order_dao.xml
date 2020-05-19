@@ -5,7 +5,9 @@
     <resultMap type="fzz.wsback.domain.OrderInfo"
                id="OrderResultMap">
         <id column="order_id" property="orderId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
         <result column="order_state" property="orderState" jdbcType="INTEGER"/>
+        <result column="order_info" property="orderInfo" jdbcType="VARCHAR"/>
         <result column="user_address" property="userAddress" jdbcType="VARCHAR"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
@@ -31,6 +33,27 @@
         WHERE user_id = #{userId} AND order_state = 1
     </select>
 
+    <!-- 通过用户 ID 获取用户已付款但未发货订单信息 -->
+    <select id="getNotDeliverOrderInfoByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM order_info
+        WHERE user_id = #{userId} AND order_state = 2
+    </select>
+
+    <!-- 通过用户 ID 获取用户已发货但未签收订单信息 -->
+    <select id="getNotSignOrderInfoByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM order_info
+        WHERE user_id = #{userId} AND order_state = 3
+    </select>
+
+    <!-- 通过用户 ID 获取用户已取消的订单信息 -->
+    <select id="getDoneOrderInfoByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM order_info
+        WHERE user_id = #{userId} AND order_state = 0
+    </select>
+
     <!-- 通过店铺 ID 获取店铺订单信息 -->
     <select id="getOrderInfoListByBusinessId" resultMap="OrderResultMap" parameterType="fzz.wsback.domain.OrderInfo">
         SELECT *
@@ -50,8 +73,8 @@
     <!-- 新建订单 -->
     <insert id="insertOrderInfo">
         INSERT
-        INTO order_info (order_id, order_state,user_address, user_id, user_phone, business_id, book_id, book_name, book_image_path, book_number, total_price)
-        VALUES (#{orderId}, 1,#{userAddress}, #{userId}, #{userPhone}, #{businessId}, #{bookId}, #{bookName}, #{bookImagePath}, #{bookNumber}, #{totalPrice})
+        INTO order_info (order_id, order_state,order_info,user_address, user_id, user_phone, business_id, book_id, book_name, book_image_path, book_number, total_price)
+        VALUES (#{orderId}, 1,"未付款",#{userAddress}, #{userId}, #{userPhone}, #{businessId}, #{bookId}, #{bookName}, #{bookImagePath}, #{bookNumber}, #{totalPrice})
     </insert>
 
     <!-- 更新订单信息 -->
@@ -64,7 +87,28 @@
     <!-- 通过订单 ID 删除订单 -->
     <update id="deleteOrderInfoByOrderId" parameterType="fzz.wsback.domain.OrderInfo">
         UPDATE order_info
-        SET order_state = 0
+        SET order_state = 0,order_info = #{orderInfo}
+        WHERE order_id = #{orderId}
+    </update>
+
+    <!-- 通过订单ID修改用户收货信息 -->
+    <update id="updateUserAddressByOrderId" parameterType="java.lang.String">
+        UPDATE order_info
+        SET user_address = #{userAddress}
+        WHERE order_id = #{orderId}
+    </update>
+
+    <!-- 通过订单ID完成付款-->
+    <update id="payOrderInfoByOrderId" parameterType="java.lang.String">
+        UPDATE order_info
+        SET order_state = 2,order_info = "已付款"
+        WHERE order_id = #{orderId}
+    </update>
+
+    <!--通过订单ID确认订单签收完成-->
+    <update id="checkOrderInfoByOrderId" parameterType="java.lang.String">
+        UPDATE order_info
+        SET order_state = 0,order_info = "已完成"
         WHERE order_id = #{orderId}
     </update>
 </mapper>

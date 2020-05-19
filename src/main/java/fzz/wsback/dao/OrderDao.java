@@ -20,11 +20,42 @@ public interface OrderDao {
     List<OrderInfo> getOrderInfoByOrderId(@Param("orderId") String orderId);
 
     /**
-     * 通过用户 ID 获取用户所有订单信息
+     * 通过用户 ID 获取用户所有未付款订单信息
      * @param userId 用户 ID
      * @return List OrderInfo 实体类对象列表
      */
     List<OrderInfo> getOrderInfoListByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 通过用户 ID 获取已付款但未发货订单信息
+     *
+     * @param userId 用户 ID
+     * @return List OrderInfo 实体类对象列表
+     */
+    List<OrderInfo> getNotDeliverOrderInfoByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 通过用户 ID 获取已发货但未签收订单信息
+     *
+     * @param userId 用户 ID
+     * @return List OrderInfo 实体类对象列表
+     */
+    List<OrderInfo> getNotSignOrderInfoByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 通过用户 ID 获取已取消的订单信息
+     *
+     * @param userId 用户 ID
+     * @return List OrderInfo 实体类对象列表
+     */
+    List<OrderInfo> getDoneOrderInfoByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 通过订单ID确认订单签收完成
+     *
+     * @param orderId
+     */
+    void checkOrderInfoByOrderId(@Param("orderId") String orderId);
 
     /**
      * 通过店铺 ID 获取店铺订单信息
@@ -88,5 +119,23 @@ public interface OrderDao {
      *
      * @param orderId 订单 ID
      */
-    void deleteOrderInfoByOrderId(@Param("orderId") String orderId);
+    void deleteOrderInfoByOrderId(@Param("orderId") String orderId,
+                                  @Param("orderInfo") String orderInfo);
+
+    /**
+     * 通过订单ID修改用户收货物信息
+     *
+     * @param orderId
+     * @param userAddress
+     */
+    void updateUserAddressByOrderId(@Param("orderId") String orderId,
+                                    @Param("userAddress") String userAddress);
+
+    /**
+     * 通过订单ID完成付款
+     *
+     * @param orderId
+     */
+    void payOrderInfoByOrderId(@Param("orderId") String orderId);
+
 }

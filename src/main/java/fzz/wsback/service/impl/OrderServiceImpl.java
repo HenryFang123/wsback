@@ -31,6 +31,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderInfo> getNotDeliverOrderInfoByUserId(Integer userId){
+        return orderDao.getNotDeliverOrderInfoByUserId(userId);
+    }
+
+    @Override
+    public List<OrderInfo> getNotSignOrderInfoByUserId(Integer userId){
+        return orderDao.getNotSignOrderInfoByUserId(userId);
+    }
+
+    @Override
+    public List<OrderInfo> getDoneOrderInfoByUserId(Integer userId){
+        return orderDao.getDoneOrderInfoByUserId(userId);
+    }
+
+    @Override
     public List<OrderInfo> getOrderInfoListByBusinessId(Integer businessId, Integer firstIndex, Integer pageSize) {
         return orderDao.getOrderInfoListByBusinessId(businessId, firstIndex, pageSize);
     }
@@ -60,7 +75,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void deleteOrderInfoByOrderId(String orderId) {
-        orderDao.deleteOrderInfoByOrderId(orderId);
+    public void deleteOrderInfoByOrderId(String orderId,String orderInfo) {
+        orderDao.deleteOrderInfoByOrderId(orderId,orderInfo);
     }
+
+    @Override
+    public void updateUserAddressByOrderId(String orderId,String userAddress){
+        orderDao.updateUserAddressByOrderId(orderId,userAddress);
+    }
+
+    @Override
+    public void payOrderInfoByOrderId(String orderId){
+        orderDao.payOrderInfoByOrderId(orderId);
+    }
+
+    @Override
+    public void checkOrderInfoByOrderId(String orderId){orderDao.checkOrderInfoByOrderId(orderId);}
 }

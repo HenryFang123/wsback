@@ -4,8 +4,10 @@ package fzz.wsback.domain;
  * @author NE
  */
 public class OrderInfo {
+    private String createTime;
     private String orderId;
     private Integer orderState;
+    private String orderInfo;
     private String userAddress;
     private Integer userId;
     private String userPhone;
@@ -103,4 +105,14 @@ public class OrderInfo {
     public void setOrderState(Integer orderState) {
         this.orderState = orderState;
     }
+
+    public String getOrderInfo() {
+        return orderInfo;
+    }
+
+    public void setOrderInfo(String orderInfo) { this.orderInfo = orderInfo; }
+
+    public String getCreateTime() { return createTime; }
+
+    public void setCreateTime(String createTime) { this.createTime = createTime; }
 }
