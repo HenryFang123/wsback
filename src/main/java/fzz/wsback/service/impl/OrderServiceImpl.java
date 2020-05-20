@@ -56,6 +56,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Long getOrderSumCountByBusinessId(Integer businessId) {
+        return orderDao.getOrderSumCountByBusinessId(businessId);
+    }
+
+    @Override
+    public Integer getCustomerCountByBusinessId(Integer businessId) {
+        return orderDao.getCustomerCountByBusinessId(businessId);
+    }
+
+    @Override
+    public Long getPriceCountByBusinessId(Integer businessId) {
+        return orderDao.getPriceCountByBusinessId(businessId);
+    }
+
+    @Override
     public void insertOrderInfo(String orderId,
                                 String userAddress,
                                 Integer userId,
@@ -70,8 +85,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrderInfo(String orderId, String userAddress, String userPhone) {
-        orderDao.updateOrderInfo(orderId, userAddress, userPhone);
+    public void updateOrderInfo(String orderId, String userAddress) {
+        orderDao.updateOrderInfo(orderId, userAddress);
     }
 
     @Override
@@ -87,6 +102,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void payOrderInfoByOrderId(String orderId){
         orderDao.payOrderInfoByOrderId(orderId);
+    }
+
+    @Override
+    public void shipByOrderId(String orderId) {
+        orderDao.shipByOrderId(orderId);
     }
 
     @Override

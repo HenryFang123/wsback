@@ -70,14 +70,36 @@ public interface OrderDao {
                                                  @Param("pageSize") Integer pageSize);
 
     /**
-     * 通过店铺 ID 获取当前店铺总订单量
+     * 通过店铺 ID 获取当前店铺状态2总订单量
      *
      * @param businessId 店铺 ID
      * @return Long 订单总数
      */
     Long getOrderInfoCountByBusinessId(@Param("businessId") Integer businessId);
 
+    /**
+     * 通过店铺 ID 获取当前店铺状态2、3总订单量
+     *
+     * @param businessId 店铺 ID
+     * @return Long 订单总数
+     */
+    Long getOrderSumCountByBusinessId(@Param("businessId") Integer businessId);
 
+    /**
+     * 通过店铺 ID 获取当前店铺总顾客数
+     *
+     * @param businessId 店铺 ID
+     * @return Integer 顾客数
+     */
+    Integer getCustomerCountByBusinessId(@Param("businessId") Integer businessId);
+
+    /**
+     * 通过店铺 ID 获取当前店铺总收入
+     *
+     * @param businessId 店铺 ID
+     * @return Long 总收入
+     */
+    Long getPriceCountByBusinessId(@Param("businessId") Integer businessId);
     /**
      * 新建订单
      *
@@ -108,11 +130,9 @@ public interface OrderDao {
      *
      * @param orderId 订单 ID
      * @param userAddress 用户收货地址
-     * @param userPhone 用户手机号
      */
     void updateOrderInfo(@Param("orderId") String orderId,
-                         @Param("userAddress") String userAddress,
-                         @Param("userPhone") String userPhone);
+                         @Param("userAddress") String userAddress);
 
     /**
      * 通过订单 ID 删除订单
@@ -125,8 +145,8 @@ public interface OrderDao {
     /**
      * 通过订单ID修改用户收货物信息
      *
-     * @param orderId
-     * @param userAddress
+     * @param orderId 订单ID
+     * @param userAddress 收货地址
      */
     void updateUserAddressByOrderId(@Param("orderId") String orderId,
                                     @Param("userAddress") String userAddress);
@@ -134,8 +154,14 @@ public interface OrderDao {
     /**
      * 通过订单ID完成付款
      *
-     * @param orderId
+     * @param orderId 订单ID
      */
     void payOrderInfoByOrderId(@Param("orderId") String orderId);
 
+    /**
+     * 通过订单ID完成发货
+     *
+     * @param orderId 订单ID
+     */
+    void shipByOrderId(@Param("orderId") String orderId);
 }

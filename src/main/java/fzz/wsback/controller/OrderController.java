@@ -71,6 +71,12 @@ public class OrderController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/getOrderSumCountByBusinessId",method = RequestMethod.POST)
+    public Long getOrderSumCountByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId) {
+        return orderService.getOrderSumCountByBusinessId(businessId);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/insertOrderInfo", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public void insertOrderInfo(@RequestParam(value = "orderId", required = false) String orderId,
                                 @RequestParam(value = "userAddress", required = false) String userAddress,
@@ -89,9 +95,8 @@ public class OrderController {
     @ResponseBody
     @RequestMapping(value = "/updateOrderInfo", method = RequestMethod.POST)
     public void updateOrderInfo(@RequestParam(value = "orderId", required = false) String orderId,
-                                @RequestParam(value = "userAddress", required = false) String userAddress,
-                                @RequestParam(value = "userPhone", required = false) String userPhone) {
-        orderService.updateOrderInfo(orderId, userAddress, userPhone);
+                                @RequestParam(value = "userAddress", required = false) String userAddress) {
+        orderService.updateOrderInfo(orderId, userAddress);
     }
 
     @ResponseBody
@@ -118,6 +123,24 @@ public class OrderController {
     @RequestMapping(value = "/checkOrderInfoByOrderId", method = RequestMethod.POST)
     public void checkOrderInfoByOrderId(@RequestParam(value = "orderId", required = false) String orderId){
         orderService.checkOrderInfoByOrderId(orderId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getCustomerCountByBusinessId",method = RequestMethod.POST)
+    public Integer getCustomerCountByBusinessId(@RequestParam(value = "businessId",required = false) Integer businessId){
+        return orderService.getCustomerCountByBusinessId(businessId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getPriceCountByBusinessId", method = RequestMethod.POST)
+    public Long getPriceCountByBusinessId(@RequestParam(value = "businessId",required = false) Integer businessId){
+        return orderService.getPriceCountByBusinessId(businessId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/shipByOrderId", method = RequestMethod.POST)
+    public void shipByOrderId(@RequestParam(value = "orderId",required = false) String orderId){
+        orderService.shipByOrderId(orderId);
     }
 }
 

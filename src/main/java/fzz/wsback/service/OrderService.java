@@ -79,6 +79,29 @@ public interface OrderService {
     Long getOrderInfoCountByBusinessId(Integer businessId);
 
     /**
+     * 通过店铺 ID 获取当前店铺总订单量
+     *
+     * @param businessId 店铺 ID
+     * @return Long 订单总数
+     */
+    Long getOrderSumCountByBusinessId(Integer businessId);
+    /**
+     * 通过店铺 ID 获取当前店铺总顾客数
+     *
+     * @param businessId 店铺 ID
+     * @return Long 顾客数
+     */
+    Integer getCustomerCountByBusinessId(Integer businessId);
+
+    /**
+     * 通过店铺 ID 获取当前店铺总收入
+     *
+     * @param businessId 店铺 ID
+     * @return Long 总收入
+     */
+    Long getPriceCountByBusinessId(Integer businessId);
+
+    /**
      * 新建订单
      *
      * @param orderId 订单 ID
@@ -108,11 +131,9 @@ public interface OrderService {
      *
      * @param orderId 订单 ID
      * @param userAddress 用户收货地址
-     * @param userPhone 用户手机号
      */
     void updateOrderInfo(String orderId,
-                         String userAddress,
-                         String userPhone);
+                         String userAddress);
 
     /**
      * 通过订单 ID 删除订单
@@ -125,8 +146,8 @@ public interface OrderService {
     /**
      * 通过订单ID修改用户收货信息
      *
-     * @param orderId
-     * @param userAddress
+     * @param orderId 订单ID
+     * @param userAddress 收货地址
      */
     void updateUserAddressByOrderId(String orderId,String userAddress);
 
@@ -134,8 +155,15 @@ public interface OrderService {
     /**
      * 通过订单ID完成付款
      *
-     * @param orderId
+     * @param orderId 订单ID
      */
     void payOrderInfoByOrderId(String orderId);
+
+    /**
+     * 通过订单ID完成商品发货
+     *
+     * @param orderId 订单ID
+     */
+    void shipByOrderId(String orderId);
 
 }
