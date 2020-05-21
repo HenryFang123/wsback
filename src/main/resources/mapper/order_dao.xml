@@ -66,7 +66,7 @@
     <select id="getOrderInfoCountByBusinessId" resultType="java.lang.Long" parameterType="java.lang.Integer">
         SELECT count(*)
         FROM order_info
-        WHERE business_id = #{businessId} AND order_state = 2
+        WHERE business_id = #{businessId} AND order_state = 2 or order_state = 3
     </select>
 
     <!-- 通过店铺 ID 获取当前店铺状态2、3总订单量 -->
