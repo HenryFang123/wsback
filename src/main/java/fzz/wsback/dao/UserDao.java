@@ -91,6 +91,7 @@ public interface UserDao {
     /**
      * 更新用户信息
      *
+     * @param userImagePath 用户头像
      * @param userPhone 用户手机号
      * @param userName 用户名
      * @param userEmail 用户邮箱地址
@@ -101,7 +102,8 @@ public interface UserDao {
      * @param userRegion 用户所在区
      * @param userAddress 用户收货地址
      */
-    void updateUserInfo(@Param("userPhone") String userPhone,
+    void updateUserInfo(@Param("userImagePath") String userImagePath,
+                        @Param("userPhone") String userPhone,
                         @Param("userName") String userName,
                         @Param("userEmail") String userEmail,
                         @Param("userSex") String userSex,

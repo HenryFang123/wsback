@@ -17,6 +17,7 @@
         <id column="user_id" property="userId" jdbcType="INTEGER"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="pass_word" property="userPassWord" jdbcType="VARCHAR"/>
+        <result column="user_image_path" property="userImagePath" jdbcType="VARCHAR"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
         <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
         <result column="user_sex" property="userSex" jdbcType="VARCHAR"/>
@@ -87,7 +88,7 @@
     <!-- 更新用户信息 -->
     <update id="updateUserInfo" parameterType="fzz.wsback.domain.UserInfo">
         UPDATE user_info
-        SET user_name = #{userName} ,user_email = #{userEmail} ,user_sex = #{userSex} ,user_age = #{userAge} ,user_province = #{userProvince} ,user_city = #{userCity} ,user_region = #{userRegion} ,user_address = #{userAddress}
+        SET user_image_path = #{userImagePath} ,user_name = #{userName} ,user_email = #{userEmail} ,user_sex = #{userSex} ,user_age = #{userAge} ,user_province = #{userProvince} ,user_city = #{userCity} ,user_region = #{userRegion} ,user_address = #{userAddress}
         WHERE user_phone = #{userPhone}
     </update>
 </mapper>

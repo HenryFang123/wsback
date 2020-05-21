@@ -7,6 +7,7 @@ public class UserInfo {
     private Integer userId;
     private String userName;
     private String userPassWord;
+    private String userImagePath;
     private String userPhone;
     private String userEmail;
     private String userSex;
@@ -39,6 +40,14 @@ public class UserInfo {
 
     public void setUserPassWord(String userPassWord) {
         this.userPassWord = userPassWord;
+    }
+
+    public String getUserImagePath() {
+        return userImagePath;
+    }
+
+    public void setUserImagePath(String userImagePath) {
+        this.userImagePath = userImagePath;
     }
 
     public String getUserPhone() {

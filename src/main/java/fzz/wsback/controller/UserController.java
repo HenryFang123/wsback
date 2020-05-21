@@ -85,7 +85,8 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
-    public void updateUserInfo(@RequestParam(value = "userPhone", required = false) String userPhone,
+    public void updateUserInfo(@RequestParam(value = "userImagePath", required = false) String userImagePath,
+                               @RequestParam(value = "userPhone", required = false) String userPhone,
                                @RequestParam(value = "userName", required = false) String userName,
                                @RequestParam(value = "userEmail", required = false) String userEmail,
                                @RequestParam(value = "userSex", required = false) String userSex,
@@ -94,6 +95,6 @@ public class UserController {
                                @RequestParam(value = "userCity", required = false) String userCity,
                                @RequestParam(value = "userRegion",required = false)String userRegion,
                                @RequestParam(value = "userAddress", required = false) String userAddress) {
-        userService.updateUserInfo(userPhone, userName, userEmail, userSex, userAge, userProvince, userCity,userRegion, userAddress);
+        userService.updateUserInfo(userImagePath, userPhone, userName, userEmail, userSex, userAge, userProvince, userCity,userRegion, userAddress);
     }
 }

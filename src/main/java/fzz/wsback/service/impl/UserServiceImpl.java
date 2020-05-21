@@ -63,8 +63,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUserInfo(String userPhone, String userName, String userEmail, String userSex, Integer userAge, String userProvince, String userCity,String userRegion, String userAddress) {
-        userDao.updateUserInfo(userPhone,userName,userEmail,userSex,userAge,userProvince,userCity,userRegion,userAddress);
+    public void updateUserInfo(String userImagePath, String userPhone, String userName, String userEmail, String userSex, Integer userAge, String userProvince, String userCity,String userRegion, String userAddress) {
+        userDao.updateUserInfo(userImagePath, userPhone,userName,userEmail,userSex,userAge,userProvince,userCity,userRegion,userAddress);
     }
 
 }
