@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 工具操作 SERVICE 层实现
  */
 @Service(value = "utilsService")
 public class UtilsServiceImpl implements UtilsService {

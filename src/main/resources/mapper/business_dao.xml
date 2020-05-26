@@ -17,4 +17,11 @@
         FROM business_info
         WHERE business_id = #{businessId}
     </select>
+
+    <!-- 通过用户 ID 获取店铺信息 -->
+    <select id="getBusinessInfoByUserId" resultMap="BusinessResultMap" parameterType="fzz.wsback.domain.BusinessInfo">
+        SELECT *
+        FROM business_info
+        WHERE user_id = #{userId}
+    </select>
 </mapper>

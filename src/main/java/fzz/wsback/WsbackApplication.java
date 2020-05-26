@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 项目启动类
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @ServletComponentScan

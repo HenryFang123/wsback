@@ -13,7 +13,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 书籍操作 SERVICE 层实现
  */
 @Service(value = "bookService")
 public class BookServiceImpl implements BookService {

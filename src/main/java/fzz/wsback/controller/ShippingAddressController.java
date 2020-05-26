@@ -15,6 +15,9 @@ import java.util.List;
 
 /**
  * @author ZJH
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 收货地址操作控制层
  */
 @Controller
 @RequestMapping(value = "/shippingAddress")

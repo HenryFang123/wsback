@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 书籍操作控制层
  */
 @Controller
 @RequestMapping(value = "/book")

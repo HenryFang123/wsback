@@ -6,7 +6,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 书籍类别操作 DAO 层
  */
 @Repository(value = "BookTypeDao")
 public interface BookTypeDao {

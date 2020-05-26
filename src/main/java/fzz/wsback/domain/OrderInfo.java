@@ -1,8 +1,14 @@
 package fzz.wsback.domain;
 
+import lombok.Data;
+
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 订单信息
  */
+@Data
 public class OrderInfo {
     private String createTime;
     private String orderId;
@@ -17,102 +23,4 @@ public class OrderInfo {
     private String bookImagePath;
     private Integer bookNumber;
     private Double totalPrice;
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getUserAddress() {
-        return userAddress;
-    }
-
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public Integer getBusinessId() {
-        return businessId;
-    }
-
-    public void setBusinessId(Integer businessId) {
-        this.businessId = businessId;
-    }
-
-    public Integer getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
-    public String getBookImagePath() {
-        return bookImagePath;
-    }
-
-    public void setBookImagePath(String bookImagePath) {
-        this.bookImagePath = bookImagePath;
-    }
-
-    public Integer getBookNumber() {
-        return bookNumber;
-    }
-
-    public void setBookNumber(Integer bookNumber) {
-        this.bookNumber = bookNumber;
-    }
-
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public Integer getOrderState() {
-        return orderState;
-    }
-
-    public void setOrderState(Integer orderState) {
-        this.orderState = orderState;
-    }
-
-    public String getOrderInfo() {
-        return orderInfo;
-    }
-
-    public void setOrderInfo(String orderInfo) { this.orderInfo = orderInfo; }
-
-    public String getCreateTime() { return createTime; }
-
-    public void setCreateTime(String createTime) { this.createTime = createTime; }
 }

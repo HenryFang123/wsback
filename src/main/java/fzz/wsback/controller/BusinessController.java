@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 店铺操作控制层
  */
 @Controller
 @RequestMapping(value = "/business")
@@ -24,7 +27,13 @@ public class BusinessController {
 
     @ResponseBody
     @RequestMapping(value = "/getBusinessInfoByBusinessId", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
-    public JSONObject checkLogin(@RequestParam(value = "businessId", required = false) String businessId) {
-        return (JSONObject) JSONObject.toJSON(businessService.getBusinessInfoByBusinessId(Integer.valueOf(businessId)));
+    public JSONObject getBusinessInfoByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId) {
+        return (JSONObject) JSONObject.toJSON(businessService.getBusinessInfoByBusinessId(businessId));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getBusinessInfoByUserId", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public JSONObject checkLogin(@RequestParam(value = "userId", required = false) Integer userId) {
+        return (JSONObject) JSONObject.toJSON(businessService.getBusinessInfoByUserId(userId));
     }
 }

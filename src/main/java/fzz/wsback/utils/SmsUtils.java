@@ -9,7 +9,10 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 工具操作--调用阿里云短信服务 API 实现用户注册时发送验证码进行验证的功能
  */
 public class SmsUtils {
     /**

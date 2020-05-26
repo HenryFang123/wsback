@@ -3,7 +3,10 @@ package fzz.wsback.service;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 工具操作 SERVICE 层
  */
 @Repository(value = "utilsService")
 public interface UtilsService {

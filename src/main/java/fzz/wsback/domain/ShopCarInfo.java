@@ -1,52 +1,18 @@
 package fzz.wsback.domain;
 
+import lombok.Data;
+
 /**
- * @author NE
+ * @author ZZA
+ * @motto Stay hungry, Stay foolish
+ * @date 2020-05-26 10:48
+ * @description 用户购物信息
  */
+@Data
 public class ShopCarInfo {
     private Integer shopCarId;
     private Integer userId;
     private Integer businessId;
     private Integer bookId;
     private Integer bookNumber;
-
-    public Integer getShopCarId() {
-        return shopCarId;
-    }
-
-    public void setShopCarId(Integer shopCarId) {
-        this.shopCarId = shopCarId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getBusinessId() {
-        return businessId;
-    }
-
-    public void setBusinessId(Integer businessId) {
-        this.businessId = businessId;
-    }
-
-    public Integer getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
-    }
-
-    public Integer getBookNumber() {
-        return bookNumber;
-    }
-
-    public void setBookNumber(Integer bookNumber) {
-        this.bookNumber = bookNumber;
-    }
 }

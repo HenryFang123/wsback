@@ -6,7 +6,7 @@
     <resultMap type="fzz.wsback.domain.UserStar"
                id="UserStarResultMap">
         <id column="user_id" property="userId" jdbcType="INTEGER"/>
-        <result column="user_star_id" property="userStarId" jdbcType="INTEGER"/>
+        <id column="user_star_id" property="userStarId" jdbcType="INTEGER"/>
         <result column="user_star_tag" property="userStarTag" jdbcType="INTEGER"/>
         <result column="user_star_status" property="userStarStatus" jdbcType="INTEGER"/>
     </resultMap>
