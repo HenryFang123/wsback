@@ -144,6 +144,13 @@ public interface OrderService {
      */
     void deleteOrderInfoByOrderId(String orderId, String orderInfo);
 
+    /**
+     * 通过订单 ID 退货
+     *
+     * @param orderId 订单 ID
+     */
+    void cancelOrderInfoByOrderId(String orderId, String orderInfo);
+
 
     /**
      * 通过订单ID修改用户收货信息

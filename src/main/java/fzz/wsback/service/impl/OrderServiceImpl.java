@@ -98,6 +98,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void cancelOrderInfoByOrderId(String orderId,String orderInfo) {
+        orderDao.cancelOrderInfoByOrderId(orderId,orderInfo);
+    }
+    @Override
     public void updateUserAddressByOrderId(String orderId,String userAddress){
         orderDao.updateUserAddressByOrderId(orderId,userAddress);
     }

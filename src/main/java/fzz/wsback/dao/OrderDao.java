@@ -146,6 +146,14 @@ public interface OrderDao {
                                   @Param("orderInfo") String orderInfo);
 
     /**
+     * 通过订单 ID 退货
+     *
+     * @param orderId 订单 ID
+     */
+    void cancelOrderInfoByOrderId(@Param("orderId") String orderId,
+                                  @Param("orderInfo") String orderInfo);
+
+    /**
      * 通过订单 ID 修改用户收货物信息
      *
      * @param orderId 订单 ID

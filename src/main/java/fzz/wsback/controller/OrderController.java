@@ -110,6 +110,13 @@ public class OrderController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/cancelOrderInfoByOrderId", method = RequestMethod.POST)
+    public void cancelOrderInfoByOrderId(@RequestParam(value = "orderId", required = false) String orderId,
+                                         @RequestParam(value = "orderInfo", required = false) String orderInfo) {
+        orderService.cancelOrderInfoByOrderId(orderId,orderInfo);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/updateUserAddressByOrderId", method = RequestMethod.POST)
     public void updateUserAddressByOrderId(@RequestParam(value = "orderId", required = false) String orderId,
                                            @RequestParam(value = "userAddress", required = false) String userAddress){

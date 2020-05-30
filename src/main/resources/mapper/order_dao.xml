@@ -98,6 +98,13 @@
         WHERE order_id = #{orderId}
     </update>
 
+    <!-- 通过订单 ID 退货 -->
+    <update id="cancelOrderInfoByOrderId" parameterType="fzz.wsback.domain.OrderInfo">
+        UPDATE order_info
+        SET order_state = 4,order_info = #{orderInfo}
+        WHERE order_id = #{orderId}
+    </update>
+
     <!-- 通过订单ID修改用户收货信息 -->
     <update id="updateUserAddressByOrderId" parameterType="java.lang.String">
         UPDATE order_info
