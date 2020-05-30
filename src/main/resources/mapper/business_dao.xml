@@ -11,15 +11,21 @@
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
     </resultMap>
 
+    <!-- 获取所有店铺 ID -->
+    <select id="getAllBusinessId" resultType="java.lang.Integer">
+        SELECT business_id
+        FROM business_info
+    </select>
+
     <!-- 通过店铺 ID 获取店铺信息 -->
-    <select id="getBusinessInfoByBusinessId" resultMap="BusinessResultMap" parameterType="fzz.wsback.domain.BusinessInfo">
+    <select id="getBusinessInfoByBusinessId" resultMap="BusinessResultMap" parameterType="java.lang.Integer">
         SELECT *
         FROM business_info
         WHERE business_id = #{businessId}
     </select>
 
     <!-- 通过用户 ID 获取店铺信息 -->
-    <select id="getBusinessInfoByUserId" resultMap="BusinessResultMap" parameterType="fzz.wsback.domain.BusinessInfo">
+    <select id="getBusinessInfoByUserId" resultMap="BusinessResultMap" parameterType="java.lang.Integer">
         SELECT *
         FROM business_info
         WHERE user_id = #{userId}

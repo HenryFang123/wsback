@@ -2,7 +2,6 @@ package fzz.wsback.service;
 
 import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import fzz.wsback.domain.OrderInfo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 订单操作 SERVICE 层
  */
-@Repository(value = "orderService")
+@Repository(value = "OrderService")
 public interface OrderService {
     /**
      * 通过订单 ID 获取订单信息

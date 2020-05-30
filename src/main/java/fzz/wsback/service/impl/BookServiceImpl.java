@@ -18,10 +18,10 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 书籍操作 SERVICE 层实现
  */
-@Service(value = "bookService")
+@Service(value = "BookService")
 public class BookServiceImpl implements BookService {
-    private final BookDao bookDao;
-    private final BookTypeDao bookTypeDao;
+    private BookDao bookDao;
+    private BookTypeDao bookTypeDao;
 
     @Autowired
     public BookServiceImpl(BookDao bookDao, BookTypeDao bookTypeDao) {

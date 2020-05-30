@@ -2,7 +2,6 @@ package fzz.wsback.service;
 
 import com.alibaba.fastjson.JSONArray;
 import fzz.wsback.domain.UserStar;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 用户收藏操作 SERVICE 层
  */
-@Repository(value = "userStarService")
+@Repository(value = "UserStarService")
 public interface UserStarService {
     /**
      * 通过用户 ID 获取用户收藏图书信息（此处 user_tag 应为 0）

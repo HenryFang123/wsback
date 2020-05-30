@@ -4,6 +4,8 @@ import fzz.wsback.domain.BusinessInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author ZZA
  * @motto Stay hungry, Stay foolish
@@ -12,6 +14,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository(value = "BusinessDao")
 public interface BusinessDao {
+    /**
+     * 获取所有店铺 ID
+     *
+     * @return List Integer 类型列表
+     */
+    List<Integer> getAllBusinessId();
+
     /**
      * 通过店铺 ID 获取店铺信息
      *

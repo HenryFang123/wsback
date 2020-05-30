@@ -2,7 +2,6 @@ package fzz.wsback.dao;
 
 import fzz.wsback.domain.BookTypeInfo;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**

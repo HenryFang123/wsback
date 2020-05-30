@@ -1,7 +1,6 @@
 package fzz.wsback.service;
 
 import fzz.wsback.domain.BusinessInfo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * @date 2020-05-26 10:48
  * @description 店铺操作 SERVICE 层
  */
-@Repository(value = "businessService")
+@Repository(value = "BusinessService")
 public interface BusinessService {
     /**
      * 通过店铺 ID 获取店铺信息

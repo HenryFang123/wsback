@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @date 2020-05-26 10:48
  * @description 工具操作 SERVICE 层实现
  */
-@Service(value = "utilsService")
+@Service(value = "UtilsService")
 public class UtilsServiceImpl implements UtilsService {
     private final UserDao userDao;
 

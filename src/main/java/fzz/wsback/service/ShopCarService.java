@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * @date 2020-05-26 10:48
  * @description 购物车操作 SERVICE 层
  */
-@Repository(value = "shopCarService")
+@Repository(value = "ShopCarService")
 public interface ShopCarService {
 
     /**

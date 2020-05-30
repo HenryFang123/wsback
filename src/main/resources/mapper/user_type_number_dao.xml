@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="fzz.wsback.dao.UserTypeNumberDao">
+
+    <resultMap type="fzz.wsback.domain.UserTypeNumber"
+               id="UserTypeNumberResultMap">
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="book_type_id" property="bookTypeId" jdbcType="INTEGER"/>
+        <result column="number" property="number" jdbcType="INTEGER"/>
+
+    </resultMap>
+
+    <!-- 获取用户类型权重 Top5 -->
+    <select id="getUserTypeNumberTop5ByUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT book_type_id
+        FROM user_type_number
+        WHERE user_id = #{userId}
+        ORDER BY number DESC
+        LIMIT 5
+    </select>
+
+    <!-- 通过用户 ID 以及 书籍类型 ID 获取用户类型权重实体 -->
+    <select id="getUserTypeNumberByUserIdAndBookTypeId" resultMap="UserTypeNumberResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM user_type_number
+        WHERE user_id = #{userId} AND book_type_id = #{bookTypeId}
+    </select>
+
+    <!-- 插入用户对类型权重 -->
+    <insert id="insertUserTypeNumber">
+        INSERT
+        INTO user_type_number (user_id, book_type_id, number)
+        VALUES (#{userId}, #{bookTypeId}, #{number})
+    </insert>
+
+    <!-- 更新用户对类型权重 -->
+    <update id="updateUserTypeNumber">
+        UPDATE user_type_number
+        SET number = number + #{number}
+        WHERE user_id = #{userId} AND book_type_id = #{bookTypeId}
+    </update>
+</mapper>

@@ -1,13 +1,10 @@
 package fzz.wsback.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import fzz.wsback.domain.ShopCarInfo;
 import fzz.wsback.service.ShopCarService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,8 +34,7 @@ public class ShopCarController {
 
     @ResponseBody
     @RequestMapping(value = "/insertShopCarInfo", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
-    public void insertShopCarInfo(ShopCarInfo shopCarInfo,
-                                  Model model) {
+    public void insertShopCarInfo(ShopCarInfo shopCarInfo) {
         shopCarService.insertShopCarInfo(shopCarInfo);
     }
 

@@ -1,7 +1,6 @@
 package fzz.wsback.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import fzz.wsback.domain.UserStar;
 import fzz.wsback.service.UserStarService;
 import org.springframework.beans.factory.annotation.Autowired;

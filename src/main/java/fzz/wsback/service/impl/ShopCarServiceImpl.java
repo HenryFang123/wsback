@@ -18,10 +18,10 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 购物车操作 SERVICE 层实现
  */
-@Service(value = "shopCarService")
+@Service(value = "ShopCarService")
 public class ShopCarServiceImpl implements ShopCarService {
-    private final ShopCarDao shopCarDao;
-    private final BookDao bookDao;
+    private ShopCarDao shopCarDao;
+    private BookDao bookDao;
 
     @Autowired
     public ShopCarServiceImpl(ShopCarDao shopCarDao, BookDao bookDao) {
@@ -32,11 +32,10 @@ public class ShopCarServiceImpl implements ShopCarService {
     @Override
     public JSONArray getShopCarListInfoByUserId(Integer userId) {
         List<ShopCarInfo> shopCarInfos = shopCarDao.getShopCarInfoListByUserId(userId);
-        BookInfo bookInfo = new BookInfo();
         JSONArray jsonArray = new JSONArray();
         Integer id = 1;
         for (ShopCarInfo shopCarInfo : shopCarInfos) {
-            bookInfo = bookDao.getBookInfoById(shopCarInfo.getBookId());
+            BookInfo bookInfo = bookDao.getBookInfoById(shopCarInfo.getBookId());
             JSONObject jsonObject = new JSONObject();
 
             // 购物车显示ID

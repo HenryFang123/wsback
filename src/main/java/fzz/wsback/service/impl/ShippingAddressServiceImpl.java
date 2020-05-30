@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * @author ZJH
@@ -17,7 +16,7 @@ import java.util.ListIterator;
  * @date 2020-05-26 10:48
  * @description 用户收货地址操作 SERVICE 层实现
  */
-@Service(value = "shippingAddressService")
+@Service(value = "ShippingAddressService")
 public class ShippingAddressServiceImpl implements ShippingAddressService {
     private ShippingAddressDao shippingAddressDao = null;
 
@@ -41,7 +40,7 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
             jsonObject.put("ifDefaultAddress", shippingAddress.getDefaultAddress());
             jsonObject.put("id", shippingAddress.getId());
             jsonObject.put("detail", shippingAddress.getConsignee()
-                    + ' ' + shippingAddress.getUserPhone()
+                    + ' ' + shippingAddress.getPostPhone()
                     + ' ' + shippingAddress.getProvince()
                     + '-' + shippingAddress.getCity()
                     + '-' + shippingAddress.getRegion()

@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 用户收货地址操作 SERVICE 层
  */
-@Repository(value = "shippingAddressService")
+@Repository(value = "ShippingAddressService")
 public interface ShippingAddressService {
     /**
      * 通过用户手机号获取用户收货地址

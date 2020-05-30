@@ -11,8 +11,8 @@
 
     <!-- 通过类型 ID 获取相关的类型信息 -->
     <select id="getBookTypeInfoByBookTypeId" resultMap="BookTypeResultMap" parameterType="fzz.wsback.domain.BookTypeInfo">
-        select *
-        from book_type_info
-        where book_type_id = #{bookTypeId}
+        SELECT *
+        FROM book_type_info
+        WHERE book_type_id = #{bookTypeId}
     </select>
 </mapper>

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @date 2020-05-26 10:48
  * @description 工具操作 SERVICE 层
  */
-@Repository(value = "utilsService")
+@Repository(value = "UtilsService")
 public interface UtilsService {
     /**
      * 核查手机号是否已被使用

@@ -2,7 +2,6 @@ package fzz.wsback.service;
 
 import com.alibaba.fastjson.JSONArray;
 import fzz.wsback.domain.BookInfo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 书籍操作 SERVICE 层
  */
-@Repository(value = "bookService")
+@Repository(value = "BookService")
 public interface BookService {
     /**
      * 通过书籍 ID 获取书籍信息

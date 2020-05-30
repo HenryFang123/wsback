@@ -118,6 +118,7 @@
         SET order_state = 0,order_info = "已完成"
         WHERE order_id = #{orderId}
     </update>
+
     <!-- 通过商家ID查询总顾客数 -->
     <select id="getCustomerCountByBusinessId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         SELECT count(distinct user_phone)

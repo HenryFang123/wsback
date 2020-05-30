@@ -1,7 +1,6 @@
 package fzz.wsback.dao;
 
 import fzz.wsback.domain.ShopCarInfo;
-import javafx.scene.chart.ValueAxis;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -60,5 +59,4 @@ public interface ShopCarDao {
      * @param shopCarId 购物车 ID
      */
     void deleteShopCarInfoByShopCarId(@Param("shopCarId") Integer shopCarId);
-
 }

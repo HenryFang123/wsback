@@ -26,6 +26,19 @@ spring:
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
 
+  redis:
+    database: 0
+    host: www.nicezza.online
+    port: 6379
+    password: Rds_+2020
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 30000
+
   devtools:
     restart:
       enabled: true
@@ -34,3 +47,6 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: fzz.wsback.domain
   configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  config: classpath:log4j2.xml

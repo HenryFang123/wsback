@@ -13,4 +13,6 @@ public class BookComment {
     private Integer userId;
     private Integer bookId;
     private String content;
+    private Float rating;
+    private String createTime;
 }

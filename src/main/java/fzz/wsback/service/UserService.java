@@ -2,7 +2,6 @@ package fzz.wsback.service;
 
 import fzz.wsback.domain.User;
 import fzz.wsback.domain.UserInfo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 用户操作 SERVICE 层
  */
-@Repository(value = "userService")
+@Repository(value = "UserService")
 public interface UserService {
     /**
      * 登录检查

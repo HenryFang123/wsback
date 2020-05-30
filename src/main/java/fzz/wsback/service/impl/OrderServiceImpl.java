@@ -14,9 +14,9 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 订单操作 SERVICE 层实现
  */
-@Service(value = "orderService")
+@Service(value = "OrderService")
 public class OrderServiceImpl implements OrderService {
-    private final OrderDao orderDao;
+    private OrderDao orderDao;
 
     @Autowired
     public OrderServiceImpl(OrderDao orderDao) {

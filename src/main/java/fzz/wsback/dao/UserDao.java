@@ -16,6 +16,13 @@ import java.util.List;
 @Repository(value = "UserDao")
 public interface UserDao {
     /**
+     * 获取全部用户 ID
+     *
+     * @return List Integer 类型列表
+     */
+    List<Integer> getAllUserId();
+
+    /**
      * 通过用户手机号获取用户信息
      *
      * @param userPhone 用户手机号

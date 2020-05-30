@@ -54,9 +54,9 @@ public interface OrderDao {
     List<OrderInfo> getDoneOrderInfoByUserId(@Param("userId") Integer userId);
 
     /**
-     * 通过订单ID确认订单签收完成
+     * 通过订单 ID 确认订单签收完成
      *
-     * @param orderId
+     * @param orderId 订单 ID
      */
     void checkOrderInfoByOrderId(@Param("orderId") String orderId);
 
@@ -146,25 +146,25 @@ public interface OrderDao {
                                   @Param("orderInfo") String orderInfo);
 
     /**
-     * 通过订单ID修改用户收货物信息
+     * 通过订单 ID 修改用户收货物信息
      *
-     * @param orderId 订单ID
+     * @param orderId 订单 ID
      * @param userAddress 收货地址
      */
     void updateUserAddressByOrderId(@Param("orderId") String orderId,
                                     @Param("userAddress") String userAddress);
 
     /**
-     * 通过订单ID完成付款
+     * 通过订单 ID 完成付款
      *
-     * @param orderId 订单ID
+     * @param orderId 订单 ID
      */
     void payOrderInfoByOrderId(@Param("orderId") String orderId);
 
     /**
-     * 通过订单ID完成发货
+     * 通过订单 ID 完成发货
      *
-     * @param orderId 订单ID
+     * @param orderId 订单 ID
      */
     void shipByOrderId(@Param("orderId") String orderId);
 }

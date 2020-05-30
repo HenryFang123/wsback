@@ -8,12 +8,43 @@
         <id column="user_id" property="userId" jdbcType="INTEGER"/>
         <id column="book_id" property="bookId" jdbcType="INTEGER"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="rating" property="rating" jdbcType="FLOAT"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+
     </resultMap>
 
-    <!-- 通过书籍 ID 获取相关的评论信息 -->
-    <select id="getBookCommentListByBookId" resultMap="BookCommentResultMap" parameterType="fzz.wsback.domain.BookComment">
-        select *
-        from book_comment
-        where book_id = #{bookId}
+    <!-- 通过书籍 ID 获取评论信息（好评总计） -->
+    <select id="getBookCommentGoodCountByBookId" resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM book_comment
+        WHERE rating BETWEEN 3.6 AND 5.0 AND book_id = #{bookId}
     </select>
+
+    <!-- 通过书籍 ID 获取评论信息（良好评总计） -->
+    <select id="getBookCommentNotGoodCountByBookId" resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM book_comment
+        WHERE rating BETWEEN 2.6 AND 3.5 AND book_id = #{bookId}
+    </select>
+
+    <!-- 通过书籍 ID 获取评论信息（差评总计） -->
+    <select id="getBookCommentBadCountByBookId" resultType="java.lang.Long" parameterType="java.lang.Integer">
+        SELECT count(*)
+        FROM book_comment
+        WHERE rating BETWEEN 0.1 AND 2.5 AND book_id = #{bookId}
+    </select>
+
+    <!-- 通过书籍 ID 获取相关的评论信息 -->
+    <select id="getBookCommentListByBookId" resultMap="BookCommentResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM book_comment
+        WHERE book_id = #{bookId}
+    </select>
+
+    <!-- 插入评论信息 -->
+    <insert id="insertBookComment">
+        INSERT
+        INTO book_comment (user_id, book_id, content, rating)
+        VALUES (#{userId}, #{bookId}, #{content}, #{rating})
+    </insert>
 </mapper>

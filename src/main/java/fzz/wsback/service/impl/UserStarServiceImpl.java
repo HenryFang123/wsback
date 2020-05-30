@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import fzz.wsback.dao.BookDao;
 import fzz.wsback.dao.BusinessDao;
 import fzz.wsback.dao.UserStarDao;
-import fzz.wsback.domain.BookInfo;
 import fzz.wsback.domain.UserStar;
 import fzz.wsback.service.UserStarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import java.util.List;
  * @date 2020-05-26 10:48
  * @description 用户收藏操作 SERVICE 层实现
  */
-@Service(value = "userStarService")
+@Service(value = "UserStarService")
 public class UserStarServiceImpl implements UserStarService {
     private UserStarDao userStarDao;
     private BookDao bookDao;

@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
  * @date 2020-05-26 10:48
  * @description 用户操作 SERVICE 层实现
  */
-@Service(value = "userService")
+@Service(value = "UserService")
 public class UserServiceImpl implements UserService {
-    private UserDao userDao = null;
+    private UserDao userDao;
 
     @Autowired
     public UserServiceImpl(UserDao userDao) {

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="fzz.wsback.dao.BookOperateNumberDao">
+
+    <resultMap type="fzz.wsback.domain.BookOperateNumber"
+               id="BookOperateNumberResultMap">
+        <result column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="business_id" property="businessId" jdbcType="INTEGER"/>
+        <result column="click_number" property="clickNumber" jdbcType="INTEGER"/>
+        <result column="add_number" property="addNumber" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- 获取图书被用户点击权重 Top18 -->
+    <select id="getBookOperateNumberClickTop18" resultType="java.lang.Integer">
+        SELECT book_id
+        FROM book_operate_number
+        ORDER BY click_number DESC
+        LIMIT 18
+    </select>
+
+    <!-- 获取图书被用户加购权重 Top6 -->
+    <select id="getBookOperateNumberAddTop6" resultType="java.lang.Integer">
+        SELECT book_id
+        FROM book_operate_number
+        ORDER BY add_number DESC
+        LIMIT 6
+    </select>
+
+    <!-- 获取店铺中图书被用户加购权重 Top5 -->
+    <select id="getBookOperateNumberBusinessAddTop5" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT book_id
+        FROM book_operate_number
+        WHERE business_id = #{businessId}
+        ORDER BY add_number DESC
+        LIMIT 5
+    </select>
+
+    <!-- 通过图书 ID 获取实体 -->
+    <select id="getBookOperateNumberByBookId" resultMap="BookOperateNumberResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM book_operate_number
+        WHERE book_id = #{bookId}
+    </select>
+
+    <!-- 插入图书被操作权重 -->
+    <insert id="insertBookOperateNumber">
+        INSERT
+        INTO book_operate_number (book_id, business_id, click_number, add_number)
+        VALUES (#{bookId}, #{businessId}, #{clickNumber}, #{addNumber})
+    </insert>
+
+    <!-- 更新图书被用户点击权重 -->
+    <update id="updateBookOperateNumberClick">
+        UPDATE book_operate_number
+        SET click_number = click_number + #{clickNumber}
+        WHERE book_id = #{bookId}
+    </update>
+
+    <!-- 更新图书被用户加购权重 -->
+    <update id="updateBookOperateNumberAdd">
+        UPDATE book_operate_number
+        SET add_number = add_number + #{addNumber}
+        WHERE book_id = #{bookId}
+    </update>
+</mapper>
