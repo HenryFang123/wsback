@@ -73,12 +73,72 @@ public interface OrderDao {
                                                  @Param("pageSize") Integer pageSize);
 
     /**
-     * 通过店铺 ID 获取当前店铺状态2总订单量
+     * 通过店铺 ID 获取店铺订单2信息
+     *
+     * @param businessId 店铺 ID
+     * @param firstIndex 分页起始位置
+     * @param pageSize 分页大小
+     * @return List OrderInfo 实体类对象列表
+     */
+    List<OrderInfo> getPayOrderInfoListByBusinessId(@Param("businessId") Integer businessId,
+                                                 @Param("firstIndex") Integer firstIndex,
+                                                 @Param("pageSize") Integer pageSize);
+
+    /**
+     * 通过店铺 ID 获取店铺订单3信息
+     *
+     * @param businessId 店铺 ID
+     * @param firstIndex 分页起始位置
+     * @param pageSize 分页大小
+     * @return List OrderInfo 实体类对象列表
+     */
+    List<OrderInfo> getSendOrderInfoListByBusinessId(@Param("businessId") Integer businessId,
+                                                    @Param("firstIndex") Integer firstIndex,
+                                                    @Param("pageSize") Integer pageSize);
+
+    /**
+     * 通过店铺 ID 获取店铺订单4信息
+     *
+     * @param businessId 店铺 ID
+     * @param firstIndex 分页起始位置
+     * @param pageSize 分页大小
+     * @return List OrderInfo 实体类对象列表
+     */
+    List<OrderInfo> getReturnOrderInfoListByBusinessId(@Param("businessId") Integer businessId,
+                                                     @Param("firstIndex") Integer firstIndex,
+                                                     @Param("pageSize") Integer pageSize);
+
+    /**
+     * 通过店铺 ID 获取当前店铺退货数量
+     *
+     * @param businessId 店铺 ID
+     * @return Long 订单总数
+     */
+    Long getReturnOrderInfoCountByBusinessId(@Param("businessId") Integer businessId);
+
+    /**
+     * 通过店铺 ID 获取当前店铺状态总订单量
      *
      * @param businessId 店铺 ID
      * @return Long 订单总数
      */
     Long getOrderInfoCountByBusinessId(@Param("businessId") Integer businessId);
+
+
+    /**
+     * 通过店铺 ID 获取当前店铺状态2总订单量
+     *
+     * @param businessId 店铺 ID
+     * @return Long 订单总数
+     */
+    Long getPayOrderInfoCountByBusinessId(@Param("businessId") Integer businessId);
+    /**
+     * 通过店铺 ID 获取当前店铺状态3总订单量
+     *
+     * @param businessId 店铺 ID
+     * @return Long 订单总数
+     */
+    Long getSendOrderInfoCountByBusinessId(@Param("businessId") Integer businessId);
 
     /**
      * 通过店铺 ID 获取当前店铺状态2、3总订单量

@@ -68,9 +68,54 @@ public class OrderController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/getPayOrderInfoListByBusinessId", method = RequestMethod.POST)
+    public List<OrderInfo> getPayOrderInfoListByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId,
+                                                           @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+                                                           @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+        Integer firstIndex = (pageIndex - 1) * pageSize;
+        return orderService.getPayOrderInfoListByBusinessId(businessId, firstIndex, pageSize);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getSendOrderInfoListByBusinessId", method = RequestMethod.POST)
+    public List<OrderInfo> getSendOrderInfoListByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId,
+                                                           @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+                                                           @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+        Integer firstIndex = (pageIndex - 1) * pageSize;
+        return orderService.getSendOrderInfoListByBusinessId(businessId, firstIndex, pageSize);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getReturnOrderInfoListByBusinessId", method = RequestMethod.POST)
+    public List<OrderInfo> getReturnOrderInfoListByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId,
+                                                            @RequestParam(value = "pageIndex", required = false) Integer pageIndex,
+                                                            @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+        Integer firstIndex = (pageIndex - 1) * pageSize;
+        return orderService.getReturnOrderInfoListByBusinessId(businessId, firstIndex, pageSize);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getReturnOrderInfoCountByBusinessId", method = RequestMethod.POST)
+    public Long getReturnOrderInfoCountByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId) {
+        return orderService.getReturnOrderInfoCountByBusinessId(businessId);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/getOrderInfoCountByBusinessId", method = RequestMethod.POST)
     public Long getOrderInfoCountByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId) {
         return orderService.getOrderInfoCountByBusinessId(businessId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getPayOrderInfoCountByBusinessId", method = RequestMethod.POST)
+    public Long getPayOrderInfoCountByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId) {
+        return orderService.getPayOrderInfoCountByBusinessId(businessId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getSendOrderInfoCountByBusinessId", method = RequestMethod.POST)
+    public Long getSendOrderInfoCountByBusinessId(@RequestParam(value = "businessId", required = false) Integer businessId) {
+        return orderService.getSendOrderInfoCountByBusinessId(businessId);
     }
 
     @ResponseBody

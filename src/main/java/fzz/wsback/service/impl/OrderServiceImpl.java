@@ -54,8 +54,38 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderInfo> getPayOrderInfoListByBusinessId(Integer businessId, Integer firstIndex, Integer pageSize) {
+        return orderDao.getPayOrderInfoListByBusinessId(businessId, firstIndex, pageSize);
+    }
+
+    @Override
+    public List<OrderInfo> getSendOrderInfoListByBusinessId(Integer businessId, Integer firstIndex, Integer pageSize) {
+        return orderDao.getSendOrderInfoListByBusinessId(businessId, firstIndex, pageSize);
+    }
+
+    @Override
+    public List<OrderInfo> getReturnOrderInfoListByBusinessId(Integer businessId, Integer firstIndex, Integer pageSize) {
+        return orderDao.getReturnOrderInfoListByBusinessId(businessId, firstIndex, pageSize);
+    }
+
+    @Override
+    public Long getReturnOrderInfoCountByBusinessId(Integer businessId) {
+        return orderDao.getReturnOrderInfoCountByBusinessId(businessId);
+    }
+
+    @Override
     public Long getOrderInfoCountByBusinessId(Integer businessId) {
         return orderDao.getOrderInfoCountByBusinessId(businessId);
+    }
+
+    @Override
+    public Long getPayOrderInfoCountByBusinessId(Integer businessId) {
+        return orderDao.getPayOrderInfoCountByBusinessId(businessId);
+    }
+
+    @Override
+    public Long getSendOrderInfoCountByBusinessId(Integer businessId) {
+        return orderDao.getSendOrderInfoCountByBusinessId(businessId);
     }
 
     @Override
