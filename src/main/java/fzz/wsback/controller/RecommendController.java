@@ -44,7 +44,7 @@ public class RecommendController {
 
     @ResponseBody
     @RequestMapping(value = "/getRecommendSystem", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
-    public JSONObject getRecommendSystem(@RequestParam("userId") Integer userId) {
+    public JSONObject getRecommendSystem() {
         JSONObject jsonObject = new JSONObject();
         JSONArray recommendSystemJsonArray = recommendService.getRecommendSystem();
 
