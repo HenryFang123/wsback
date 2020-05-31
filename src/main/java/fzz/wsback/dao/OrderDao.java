@@ -46,6 +46,14 @@ public interface OrderDao {
     List<OrderInfo> getNotSignOrderInfoByUserId(@Param("userId") Integer userId);
 
     /**
+     * 通过用户 ID 获取已提交退货的订单信息
+     *
+     * @param userId 用户 ID
+     * @return List OrderInfo 实体类对象列表
+     */
+    List<OrderInfo> getCancelOrderInfoByUserId(@Param("userId") Integer userId);
+
+    /**
      * 通过用户 ID 获取已取消的订单信息
      *
      * @param userId 用户 ID

@@ -44,6 +44,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderInfo> getCancelOrderInfoByUserId(Integer userId){
+        return orderDao.getCancelOrderInfoByUserId(userId);
+    }
+
+    @Override
     public List<OrderInfo> getDoneOrderInfoByUserId(Integer userId){
         return orderDao.getDoneOrderInfoByUserId(userId);
     }

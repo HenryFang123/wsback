@@ -47,7 +47,14 @@
         WHERE user_id = #{userId} AND order_state = 3
     </select>
 
-    <!-- 通过用户 ID 获取用户已取消的订单信息 -->
+    <!-- 通过用户 ID 获取用户已发货但未签收订单信息 -->
+    <select id="getCancelOrderInfoByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        FROM order_info
+        WHERE user_id = #{userId} AND order_state = 4
+    </select>
+
+    <!-- 通过用户 ID 获取用户已完成的订单信息 -->
     <select id="getDoneOrderInfoByUserId" resultMap="OrderResultMap" parameterType="java.lang.Integer">
         SELECT *
         FROM order_info

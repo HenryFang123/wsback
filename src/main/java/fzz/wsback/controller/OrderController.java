@@ -53,6 +53,12 @@ public class OrderController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/getCancelOrderInfoByUserId", method = RequestMethod.POST)
+    public List<OrderInfo> getCancelOrderInfoByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
+        return orderService.getCancelOrderInfoByUserId(userId);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/getDoneOrderInfoByUserId", method = RequestMethod.POST)
     public List<OrderInfo> getDoneOrderInfoByUserId(@RequestParam(value = "userId", required = false) Integer userId) {
         return orderService.getDoneOrderInfoByUserId(userId);
