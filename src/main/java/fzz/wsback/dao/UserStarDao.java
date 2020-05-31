@@ -54,9 +54,19 @@ public interface UserStarDao {
     /**
      * 修改用户收藏项状态
      *
-     * @param userId 用户 ID
+     * @param userId     用户 ID
      * @param userStarId 用户收藏对象 ID
      */
     void updateUserStar(@Param("userId") Integer userId,
                         @Param("userStarId") Integer userStarId);
+
+    /**
+     * 修改用户收藏项状态
+     *
+     * @param userId     用户 ID
+     * @param userStarId 用户收藏对象 ID
+     */
+    void updateUserStarActive(@Param("userId") Integer userId,
+                              @Param("userStarId") Integer userStarId);
+
 }

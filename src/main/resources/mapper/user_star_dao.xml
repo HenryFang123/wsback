@@ -43,6 +43,15 @@
     <update id="updateUserStar" parameterType="fzz.wsback.domain.UserStar">
         UPDATE user_star
         SET user_star_status = 0
-        WHERE user_id = #{userId} AND user_star_id = #{userStarId}
+        WHERE user_id = #{userId}
+          AND user_star_id = #{userStarId}
+    </update>
+
+    <!-- 修改用户收藏项状态 -->
+    <update id="updateUserStarActive" parameterType="fzz.wsback.domain.UserStar">
+        UPDATE user_star
+        SET user_star_status = 1
+        WHERE user_id = #{userId}
+          AND user_star_id = #{userStarId}
     </update>
 </mapper>

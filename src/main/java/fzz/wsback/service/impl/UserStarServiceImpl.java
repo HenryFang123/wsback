@@ -69,4 +69,9 @@ public class UserStarServiceImpl implements UserStarService {
     public void updateUserStar(Integer userId, Integer userStarId) {
         userStarDao.updateUserStar(userId, userStarId);
     }
+
+    @Override
+    public void updateUserStarActive(Integer userId, Integer userStarId) {
+        userStarDao.updateUserStarActive(userId, userStarId);
+    }
 }

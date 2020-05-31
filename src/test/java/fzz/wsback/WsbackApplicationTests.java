@@ -4,18 +4,15 @@ import com.github.houbb.junitperf.core.annotation.JunitPerfConfig;
 import com.github.houbb.junitperf.core.report.impl.ConsoleReporter;
 import com.github.houbb.junitperf.core.report.impl.HtmlReporter;
 import fzz.wsback.domain.UserInfo;
-import fzz.wsback.service.RecommendService;
 import fzz.wsback.service.UserService;
 import fzz.wsback.service.impl.RecommendServiceImpl;
-import fzz.wsback.utils.SmsUtils;
+import fzz.wsback.service.impl.UtilsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.io.File;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,6 +22,8 @@ class WsbackApplicationTests {
     UserService userService;
     @Autowired
     RecommendServiceImpl recommendServiceImpl;
+    @Autowired
+    UtilsServiceImpl utilsServiceImpl;
 
     @Test
     void contextLoads() {
@@ -48,12 +47,17 @@ class WsbackApplicationTests {
     }
 
     @Test
-    public void testDoRecommendSystem(){
+    public void testDoRecommendSystem() {
         recommendServiceImpl.doRecommendSystem();
     }
 
     @Test
-    public void testDoRecommendBusiness(){
+    public void testDoRecommendBusiness() {
         recommendServiceImpl.doRecommendBusiness();
+    }
+
+    @Test
+    public void testSendSms() {
+        utilsServiceImpl.sendCode("17852323581");
     }
 }

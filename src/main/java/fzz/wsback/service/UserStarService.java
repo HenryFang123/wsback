@@ -54,9 +54,18 @@ public interface UserStarService {
     /**
      * 修改用户收藏项状态
      *
-     * @param userId 用户 ID
+     * @param userId     用户 ID
      * @param userStarId 用户收藏对象 ID
      */
     void updateUserStar(Integer userId,
                         Integer userStarId);
+
+    /**
+     * 修改用户收藏项状态
+     *
+     * @param userId     用户 ID
+     * @param userStarId 用户收藏对象 ID
+     */
+    void updateUserStarActive(Integer userId,
+                              Integer userStarId);
 }

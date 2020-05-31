@@ -45,8 +45,10 @@ public class UserStarController {
                                @RequestParam(value = "userStarTag", required = false) Integer userStarTag) {
         UserStar userStar = userStarService.getUserStarByUserIdAndUserStarId(userId, userStarId);
 
-        if (userStar == null){
+        if (userStar == null) {
             userStarService.insertUserStar(userId, userStarId, userStarTag);
+        } else {
+            userStarService.updateUserStarActive(userId, userStarId);
         }
     }
 

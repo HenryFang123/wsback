@@ -60,33 +60,13 @@ public class RecommendController {
 
     @ResponseBody
     @RequestMapping(value = "/getRecommendSystemHot", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
-    public JSONObject getRecommendSystemHot() {
-        JSONObject jsonObject = new JSONObject();
-        JSONArray recommendSystemHotJsonArray = recommendService.getRecommendSystemHot();
-
-        if (recommendSystemHotJsonArray.isEmpty()) {
-            jsonObject.put("resultCode", '0');
-        } else {
-            jsonObject.put("resultCode", '1');
-            jsonObject.put("recommendBookListSH", recommendSystemHotJsonArray);
-        }
-
-        return jsonObject;
+    public JSONArray getRecommendSystemHot() {
+        return recommendService.getRecommendSystemHot();
     }
 
     @ResponseBody
     @RequestMapping(value = "/getRecommendBusinessHot", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
-    public JSONObject getRecommendBusinessHot(@RequestParam(value = "businessId", required = false) Integer businessId) {
-        JSONObject jsonObject = new JSONObject();
-        JSONArray recommendBusinessHotJsonArray = recommendService.getRecommendBusinessHot(businessId);
-
-        if (recommendBusinessHotJsonArray.isEmpty()) {
-            jsonObject.put("resultCode", '0');
-        } else {
-            jsonObject.put("resultCode", '1');
-            jsonObject.put("recommendBookListBH", recommendBusinessHotJsonArray);
-        }
-
-        return jsonObject;
+    public JSONArray getRecommendBusinessHot(@RequestParam(value = "businessId", required = false) Integer businessId) {
+        return recommendService.getRecommendBusinessHot(businessId);
     }
 }
