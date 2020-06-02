@@ -22,10 +22,9 @@
 
     <!-- 通过书籍 ID 获取书籍信息 -->
     <select id="getLastBookId" resultType="java.lang.Integer">
-        SELECT book_id
-        FROM book_info
-        ORDER BY book_id DESC
-        LIMIT 1
+        select AUTO_INCREMENT
+        FROM INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_NAME = 'book_info'
     </select>
 
     <!-- 通过书籍 ID 获取书籍信息 -->

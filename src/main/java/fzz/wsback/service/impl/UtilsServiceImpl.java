@@ -91,7 +91,7 @@ public class UtilsServiceImpl implements UtilsService {
 
     @Override
     public String uploadBookImage(MultipartFile multipartFile) {
-        Integer nextBookId = bookDao.getLastBookId() + 1;
+        Integer nextBookId = bookDao.getLastBookId();
         String bookImagePath = "";
 
         ObsClient obsClient = new ObsClient(ACCESS_KEY_ID_HW, ACCESS_KEY_SECRET_HW, END_POINT_HW);
@@ -99,7 +99,7 @@ public class UtilsServiceImpl implements UtilsService {
         try {
             InputStream imageInputStream = multipartFile.getInputStream();
 
-            obsClient.putObject("netbook", "book_img" + String.valueOf(nextBookId) + ".png", imageInputStream);
+            obsClient.putObject("netbook", "book_img/" + String.valueOf(nextBookId) + ".png", imageInputStream);
 
             bookImagePath = "http://image.nicezza.online/book_img/" + String.valueOf(nextBookId) + ".png";
         } catch (IOException ioe) {
