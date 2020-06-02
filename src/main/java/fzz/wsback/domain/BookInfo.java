@@ -21,6 +21,7 @@ public class BookInfo {
     private Double bookPrice;
     private Integer bookStock;
     private String bookDescription;
+    private Integer bookComment;
     private Float bookRating;
     private Integer bookTypeId;
     private Integer businessId;

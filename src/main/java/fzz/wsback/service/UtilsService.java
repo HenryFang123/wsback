@@ -30,7 +30,7 @@ public interface UtilsService {
     /**
      * 上传书籍图片到华为云 OBS 桶中
      *
-     * @param multipartFile
+     * @param multipartFile 文件流
      * @return img url
      */
     String uploadBookImage(MultipartFile multipartFile);

@@ -14,6 +14,7 @@
         <result column="book_price" property="bookPrice" jdbcType="DOUBLE"/>
         <result column="book_stock" property="bookStock" jdbcType="INTEGER"/>
         <result column="book_description" property="bookDescription" jdbcType="VARCHAR"/>
+        <result column="book_comment" property="bookComment" jdbcType="INTEGER"/>
         <result column="book_rating" property="bookRating" jdbcType="FLOAT"/>
         <result column="book_type_id" property="bookTypeId" jdbcType="INTEGER"/>
         <result column="business_id" property="businessId" jdbcType="INTEGER"/>
@@ -60,7 +61,8 @@
     <select id="getBookInfoListByBusinessIdAndTypeId" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
         SELECT *
         FROM book_info
-        WHERE business_id = #{businessId} AND book_type_id = #{typeId}
+        WHERE business_id = #{businessId}
+          AND book_type_id = #{bookTypeId}
         LIMIT #{pageStart}, #{pageSize}
     </select>
 

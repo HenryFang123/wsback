@@ -5,6 +5,7 @@ import com.github.houbb.junitperf.core.report.impl.ConsoleReporter;
 import com.github.houbb.junitperf.core.report.impl.HtmlReporter;
 import fzz.wsback.domain.UserInfo;
 import fzz.wsback.service.UserService;
+import fzz.wsback.service.UtilsService;
 import fzz.wsback.service.impl.RecommendServiceImpl;
 import fzz.wsback.service.impl.UtilsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,8 @@ class WsbackApplicationTests {
     UserService userService;
     @Autowired
     RecommendServiceImpl recommendServiceImpl;
+    @Autowired
+    UtilsService utilsService;
     @Autowired
     UtilsServiceImpl utilsServiceImpl;
 
@@ -58,6 +61,7 @@ class WsbackApplicationTests {
 
     @Test
     public void testSendSms() {
-        utilsServiceImpl.sendCode("17852323581");
+        System.out.println(utilsService.sendSms("17852323581"));
+//        System.out.println(utilsServiceImpl.sendCode("17806291792"));
     }
 }

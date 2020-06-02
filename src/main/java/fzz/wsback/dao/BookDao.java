@@ -61,13 +61,13 @@ public interface BookDao {
      * 通过店铺 ID、类型 ID、分页起始位置、分页大小获取当前页所需数据
      *
      * @param businessId 店铺 ID
-     * @param typeId 类型 ID
-     * @param pageStart 页起始数据位置
-     * @param pageSize 页大小
+     * @param bookTypeId 类型 ID
+     * @param pageStart  页起始数据位置
+     * @param pageSize   页大小
      * @return List BookInfo 实体类对象列表
      */
     List<BookInfo> getBookInfoListByBusinessIdAndTypeId(@Param("businessId") Integer businessId,
-                                                        @Param("typeId") Integer typeId,
+                                                        @Param("bookTypeId") Integer bookTypeId,
                                                         @Param("pageStart") Integer pageStart,
                                                         @Param("pageSize") Integer pageSize);
 

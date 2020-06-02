@@ -58,14 +58,13 @@ public class UtilsController {
     @RequestMapping(value = "/sendSms", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public JSONObject sendSms(@RequestParam(value = "userPhone", required = false) String userPhone) {
         JSONObject jsonObject = new JSONObject();
+        int phoneCode = utilsService.sendSms(userPhone);
 
-        if (utilsService.sendSms(userPhone) == 0) {
-            // 失败标志
-            jsonObject.put("resultCode", '0');
-        } else {
-            // 成功标志
+        if (utilsService.sendSms(userPhone) > 0) {
             jsonObject.put("resultCode", '1');
-            jsonObject.put("phoneCode", utilsService.sendSms(userPhone));
+            jsonObject.put("phoneCode", phoneCode);
+        } else {
+            jsonObject.put("resultCode", '0');
         }
 
         return jsonObject;
