@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/book")
 public class BookController {
-    private final BookService bookService;
+    private BookService bookService;
 
     @Autowired
     public BookController(BookService bookService) {
@@ -75,6 +75,7 @@ public class BookController {
     @ResponseBody
     @RequestMapping(value = "/insertBookInfo", method = RequestMethod.POST)
     public void insertBookInfo(@RequestParam(value = "businessId", required = false) Integer businessId,
+                               @RequestParam(value = "bookTypeId", required = false) Integer bookTypeId,
                                @RequestParam(value = "bookName", required = false) String bookName,
                                @RequestParam(value = "bookImagePath", required = false) String bookImagePath,
                                @RequestParam(value = "bookAuthor", required = false) String bookAuthor,
@@ -83,7 +84,7 @@ public class BookController {
                                @RequestParam(value = "bookIsbn", required = false) String bookIsbn,
                                @RequestParam(value = "bookPrice", required = false) Double bookPrice,
                                @RequestParam(value = "bookDescription", required = false) String bookDescription) {
-        bookService.insertBookInfo(businessId, bookName, bookImagePath, bookAuthor, bookPub, bookYear, bookIsbn, bookPrice, bookDescription);
+        bookService.insertBookInfo(businessId, bookTypeId, bookName, bookImagePath, bookAuthor, bookPub, bookYear, bookIsbn, bookPrice, bookDescription);
     }
 
     @ResponseBody

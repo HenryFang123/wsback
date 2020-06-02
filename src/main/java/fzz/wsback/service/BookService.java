@@ -85,17 +85,19 @@ public interface BookService {
     /**
      * 插入书籍信息
      *
-     * @param businessId 店铺 ID
-     * @param bookName 书籍名
-     * @param bookImagePath 书籍图片路径
-     * @param bookAuthor 书籍作者
-     * @param bookPub 书籍出版社
-     * @param bookYear 书籍出版年
-     * @param bookIsbn 书籍 ISBN 号
-     * @param bookPrice 书籍价格
+     * @param businessId      店铺 ID
+     * @param bookTypeId      书籍类型 ID
+     * @param bookName        书籍名
+     * @param bookImagePath   书籍图片路径
+     * @param bookAuthor      书籍作者
+     * @param bookPub         书籍出版社
+     * @param bookYear        书籍出版年
+     * @param bookIsbn        书籍 ISBN 号
+     * @param bookPrice       书籍价格
      * @param bookDescription 书籍描述
      */
     void insertBookInfo(Integer businessId,
+                        Integer bookTypeId,
                         String bookName,
                         String bookImagePath,
                         String bookAuthor,

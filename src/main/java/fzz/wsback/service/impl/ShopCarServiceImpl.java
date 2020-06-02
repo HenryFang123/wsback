@@ -6,6 +6,7 @@ import fzz.wsback.dao.BookDao;
 import fzz.wsback.dao.ShopCarDao;
 import fzz.wsback.domain.BookInfo;
 import fzz.wsback.domain.ShopCarInfo;
+import fzz.wsback.service.BookOperateNumberService;
 import fzz.wsback.service.ShopCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,7 @@ public class ShopCarServiceImpl implements ShopCarService {
 
     @Override
     public void insertShopCarInfo(ShopCarInfo shopCarInfo) {
+
         shopCarDao.insertShopCarInfo(shopCarInfo.getUserId(), shopCarInfo.getBusinessId(), shopCarInfo.getBookId(), shopCarInfo.getBookNumber());
     }
 

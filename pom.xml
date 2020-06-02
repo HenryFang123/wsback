@@ -141,6 +141,13 @@
             <version>2.1.0</version>
         </dependency>
 
+        <!-- 华为云 obs java -->
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>esdk-obs-java</artifactId>
+            <version>3.19.7</version>
+        </dependency>
+
         <!-- Spring Boot Log4j2 日志输出依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -164,6 +171,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 测试可视化 -->
         <dependency>
             <groupId>com.github.houbb</groupId>
             <artifactId>junitperf</artifactId>

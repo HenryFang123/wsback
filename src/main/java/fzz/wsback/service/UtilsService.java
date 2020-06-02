@@ -1,6 +1,7 @@
 package fzz.wsback.service;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author ZZA
@@ -25,4 +26,12 @@ public interface UtilsService {
      * @return phoneCode
      */
     Integer sendSms(String userPhone);
+
+    /**
+     * 上传书籍图片到华为云 OBS 桶中
+     *
+     * @param multipartFile
+     * @return img url
+     */
+    String uploadBookImage(MultipartFile multipartFile);
 }

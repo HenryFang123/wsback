@@ -15,6 +15,13 @@ import java.util.List;
 @Repository(value = "BookDao")
 public interface BookDao {
     /**
+     * 获取书籍信息中最大 bookId
+     *
+     * @return Integer BookId
+     */
+    Integer getLastBookId();
+
+    /**
      * 通过书籍 ID 获取书籍信息
      *
      * @param bookId 书籍 ID
@@ -86,6 +93,7 @@ public interface BookDao {
      * 插入书籍信息
      *
      * @param businessId      店铺 ID
+     * @param bookTypeId      书籍类型 ID
      * @param bookName        书籍名
      * @param bookImagePath   书籍图片路径
      * @param bookAuthor      书籍作者
@@ -96,6 +104,7 @@ public interface BookDao {
      * @param bookDescription 书籍描述
      */
     void insertBookInfo(@Param("businessId") Integer businessId,
+                        @Param("bookTypeId") Integer bookTypeId,
                         @Param("bookName") String bookName,
                         @Param("bookImagePath") String bookImagePath,
                         @Param("bookAuthor") String bookAuthor,
@@ -119,6 +128,13 @@ public interface BookDao {
                         @Param("bookImagePath") String bookImagePath,
                         @Param("bookPrice") Double bookPrice,
                         @Param("bookDescription") String bookDescription);
+
+    /**
+     * 更新书籍评论数
+     *
+     * @param bookId 书籍 ID
+     */
+    void updateBookCommentNumber(@Param("bookId") Integer bookId);
 
     /**
      * 通过书籍 ID 删除该条书籍

@@ -21,14 +21,22 @@
     </resultMap>
 
     <!-- 通过书籍 ID 获取书籍信息 -->
-    <select id="getBookInfoById" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
+    <select id="getLastBookId" resultType="java.lang.Integer">
+        SELECT book_id
+        FROM book_info
+        ORDER BY book_id DESC
+        LIMIT 1
+    </select>
+
+    <!-- 通过书籍 ID 获取书籍信息 -->
+    <select id="getBookInfoById" resultMap="BookResultMap" parameterType="java.lang.Integer">
         SELECT *
         FROM book_info
         WHERE book_id = #{bookId}
     </select>
 
     <!-- 通过书籍名称获取书籍信息 -->
-    <select id="getBookInfoByBookName" resultMap="BookResultMap" parameterType="fzz.wsback.domain.BookInfo">
+    <select id="getBookInfoByBookName" resultMap="BookResultMap" parameterType="java.lang.String">
         SELECT *
         FROM book_info
         WHERE book_name = #{bookName}
@@ -74,15 +82,27 @@
     <!-- 插入书籍信息 -->
     <insert id="insertBookInfo">
         INSERT
-        INTO book_info (business_id, book_name, book_image_path, book_author, book_pub, book_year, book_isbn, book_price, book_description)
-        VALUES (#{businessId}, #{bookName}, #{bookImagePath}, #{bookAuthor}, #{bookPub}, #{bookYear}, #{bookIsbn}, #{bookPrice}, #{bookDescription})
+        INTO book_info (business_id, book_type_id, book_name, book_image_path, book_author, book_pub, book_year,
+                        book_isbn, book_price, book_description)
+        VALUES (#{businessId}, #{bookTypeId}, #{bookName}, #{bookImagePath}, #{bookAuthor}, #{bookPub}, #{bookYear},
+                #{bookIsbn}, #{bookPrice}, #{bookDescription})
     </insert>
 
     <!-- 更新书籍信息 -->
     <update id="updateBookInfo" parameterType="fzz.wsback.domain.BookInfo">
         UPDATE book_info
-        SET book_image_path = #{bookImagePath}, book_price = #{bookPrice}, book_description = #{bookDescription}
-        WHERE business_id = #{businessId} AND book_name = #{bookName};
+        SET book_image_path  = #{bookImagePath},
+            book_price       = #{bookPrice},
+            book_description = #{bookDescription}
+        WHERE business_id = #{businessId}
+          AND book_name = #{bookName};
+    </update>
+
+    <!-- 更新书籍评论数 -->
+    <update id="updateBookCommentNumber" parameterType="fzz.wsback.domain.BookInfo">
+        UPDATE book_info
+        SET book_comment = book_comment + 1
+        WHERE book_id = #{bookId}
     </update>
 
     <!-- 通过书籍 ID 删除该条书籍，改变状态为0 -->

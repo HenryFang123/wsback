@@ -37,7 +37,20 @@ public class BookOperateNumberServiceImpl implements BookOperateNumberService {
     }
 
     @Override
-    public void updateBookOperateNumberAdd(Integer bookId, Integer addNumber) {
-        bookOperateNumberDao.updateBookOperateNumberAdd(bookId, addNumber);
+    public void operateClickBook(Integer bookId, Integer businessId, Integer clickNumber) {
+        if (bookOperateNumberDao.getBookOperateNumberByBookId(bookId) == null) {
+            bookOperateNumberDao.insertBookOperateNumber(bookId, businessId, clickNumber, 0);
+        } else {
+            bookOperateNumberDao.updateBookOperateNumberClick(bookId, clickNumber);
+        }
+    }
+
+    @Override
+    public void operateAddBook(Integer bookId, Integer businessId, Integer addNumber) {
+        if (bookOperateNumberDao.getBookOperateNumberByBookId(bookId) == null) {
+            bookOperateNumberDao.insertBookOperateNumber(bookId, businessId, 0, addNumber);
+        } else {
+            bookOperateNumberDao.updateBookOperateNumberAdd(bookId, addNumber);
+        }
     }
 }

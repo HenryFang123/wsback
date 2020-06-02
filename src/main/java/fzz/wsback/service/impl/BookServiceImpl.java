@@ -72,8 +72,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void insertBookInfo(Integer businessId, String bookName, String bookImagePath, String bookAuthor, String bookPub, String bookYear, String bookIsbn, Double bookPrice, String bookDescription) {
-        bookDao.insertBookInfo(businessId, bookName, bookImagePath, bookAuthor, bookPub, bookYear, bookIsbn, bookPrice, bookDescription);
+    public void insertBookInfo(Integer businessId, Integer bookTypeId, String bookName, String bookImagePath, String bookAuthor, String bookPub, String bookYear, String bookIsbn, Double bookPrice, String bookDescription) {
+        bookDao.insertBookInfo(businessId, bookTypeId, bookName, bookImagePath, bookAuthor, bookPub, bookYear, bookIsbn, bookPrice, bookDescription);
     }
 
     @Override

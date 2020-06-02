@@ -28,24 +28,11 @@ public class BookOperateNumberController {
     @RequestMapping(value = "/operateClickBook", method = RequestMethod.POST)
     public void operateClickBook(@RequestParam(value = "bookId", required = false) Integer bookId,
                                  @RequestParam(value = "businessId", required = false) Integer businessId,
-                                 @RequestParam(value = "clickNumber", required = false) Integer clickNumber,
-                                 @RequestParam(value = "addNumber", required = false) Integer addNumber){
-        if (bookOperateNumberService.getBookOperateNumberByBookId(bookId) == null){
+                                 @RequestParam(value = "clickNumber", required = false) Integer clickNumber) {
+        if (bookOperateNumberService.getBookOperateNumberByBookId(bookId) == null) {
             bookOperateNumberService.insertBookOperateNumber(bookId, businessId, clickNumber, 0);
         } else {
             bookOperateNumberService.updateBookOperateNumberClick(bookId, clickNumber);
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/operateAddBook", method = RequestMethod.POST)
-    public void operateAddBook(@RequestParam(value = "bookId", required = false) Integer bookId,
-                               @RequestParam(value = "businessId", required = false) Integer businessId,
-                               @RequestParam(value = "addNumber", required = false) Integer addNumber){
-        if (bookOperateNumberService.getBookOperateNumberByBookId(bookId) == null){
-            bookOperateNumberService.insertBookOperateNumber(bookId, businessId, 0, addNumber);
-        } else {
-            bookOperateNumberService.updateBookOperateNumberAdd(bookId, addNumber);
         }
     }
 }

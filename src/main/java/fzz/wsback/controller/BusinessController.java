@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/business")
 public class BusinessController {
-    private final BusinessService businessService;
+    private BusinessService businessService;
 
     @Autowired
     public BusinessController(BusinessService businessService) {

@@ -55,6 +55,7 @@ public class BookCommentServiceImpl implements BookCommentService {
     @Override
     public void insertBookComment(BookComment bookComment) {
         bookCommentDao.insertBookComment(bookComment.getUserId(), bookComment.getBookId(), bookComment.getContent(), bookComment.getRating());
+        bookDao.updateBookCommentNumber(bookComment.getBookId());
         writeToUserBookRatingFile(bookComment.getUserId(), bookComment.getBookId(), bookComment.getRating(), bookDao.getBookInfoById(bookComment.getBookId()).getBookTypeId());
     }
 

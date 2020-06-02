@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/shippingAddress")
 public class ShippingAddressController {
-    private final ShippingAddressService shippingAddressService;
+    private ShippingAddressService shippingAddressService;
 
     @Autowired
     public ShippingAddressController(ShippingAddressService shippingAddressService) {

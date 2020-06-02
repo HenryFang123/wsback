@@ -2,6 +2,7 @@ package fzz.wsback.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import fzz.wsback.domain.ShopCarInfo;
+import fzz.wsback.service.BookOperateNumberService;
 import fzz.wsback.service.ShopCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/shopCar")
 public class ShopCarController {
-    private final ShopCarService shopCarService;
+    private ShopCarService shopCarService;
+    private BookOperateNumberService bookOperateNumberService;
 
     @Autowired
-    public ShopCarController(ShopCarService shopCarService) {
+    public ShopCarController(ShopCarService shopCarService, BookOperateNumberService bookOperateNumberService) {
         this.shopCarService = shopCarService;
+        this.bookOperateNumberService = bookOperateNumberService;
     }
 
     @ResponseBody
@@ -36,6 +39,9 @@ public class ShopCarController {
     @RequestMapping(value = "/insertShopCarInfo", produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public void insertShopCarInfo(ShopCarInfo shopCarInfo) {
         shopCarService.insertShopCarInfo(shopCarInfo);
+
+        // 用户加购对该图书增加 Add 权重 15
+        bookOperateNumberService.operateAddBook(shopCarInfo.getBookId(), shopCarInfo.getBusinessId(), 15);
     }
 
     @ResponseBody
