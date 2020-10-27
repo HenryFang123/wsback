@@ -15,9 +15,9 @@ spring:
     druid:
       filters: stat
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://121.36.70.19:3306/ws_book?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      username: admin_ws
-      password: Aws_20200403
+      url: jdbc:mysql://XXXXXXXXXXXXX/ws_book?allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      username: 
+      password: 
       initial-size: 1
       min-idle: 1
       max-active: 100
@@ -33,9 +33,9 @@ spring:
 
   redis:
     database: 0
-    host: www.nicezza.online
-    port: 6379
-    password: Rds_+2020
+    host: 
+    port: 
+    password: 
     lettuce:
       pool:
         max-active: 8
